@@ -1,776 +1,237 @@
+/* ==========================================================================
+   Plan.css — Phnes Travel (Modern / Glass edition)
+   --ink:      #0b1210   near-black, base overlay
+   --emerald:  #14b8a6   vivid teal accent — the "modern" pop color
+   --emerald-2:#0d9488   deeper teal for gradients/hover
+   --frost:    #f5f7f6   near-white text
+   --slate:    rgba(245,247,246,0.65)  muted text
+   ========================================================================== */
+
+:root {
+  --ink: #0b1210;
+  --emerald: #14b8a6;
+  --emerald-2: #0d9488;
+  --frost: #f5f7f6;
+  --slate: rgba(245, 247, 246, 0.65);
+}
+
 * {
-  margin: 0%;
-  padding: 0%;
   box-sizing: border-box;
 }
 
-.top-text  h1 {
-    margin-top: clamp(2rem,5rem,10rem);
-    margin-left: -10rem;
-}
- 
-.top-text h3 {
-    margin-top: 3rem;
-    margin-right: 1rem;
+/* header is now just the positioning context — height/width still set
+   inline in the component, but it needs position:relative so the
+   <img> and .black overlay stack correctly */
+header {
+  position: relative;
+  overflow: hidden;
 }
 
-.navbar-toggle-btn, .navbar-close-btn {
-    display: none;
+/* The background photo — now a real <img> tag pulled from /public
+   instead of an imported asset. Give the <img> in HomePlan.jsx a
+   className="home-img" to pick this up. */
+.home-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right;
+  z-index: 0;
 }
 
-.navbar-container {
-    position: sticky;
-    background-color: rgb(255, 255, 255);
-    height: 5vh;
-    display: flex;
-    gap: 5%;
-    z-index: 100;
+/* Overlay that sits on top of the header background image */
+.black {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(
+    160deg,
+    rgba(11, 18, 16, 0.75) 0%,
+    rgba(11, 18, 16, 0.25) 45%,
+    rgba(11, 18, 16, 0.85) 100%
+  );
+  padding: 26px 44px 44px;
+  overflow: hidden;
 }
 
-.navbar-container h2 {
-    margin-top: 0.5rem;
-    margin-left: 1rem;
-    font-size: 17px;
-    color: rgb(21, 75, 82);
+/* ---------- Hamburger toggle ---------- */
+.navbar-toggle-btn {
+  position: absolute;
+  top: 24px;
+  left: 32px;
+  z-index: 20;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 14px;
+  background: rgba(245, 247, 246, 0.08);
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(245, 247, 246, 0.14);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
-.navbar-btn {
-    position: relative;
-    margin-top: 0.1rem;
-    border-radius: 14px;
-    color: rgba(34, 122, 118, 0.993);
-    background-color: rgb(255, 255, 255);
-    border: none;
-    font-size: 1.1rem;
-    width: 10%;
-    height: 30px;
-}
-.navbar-btn:hover {
-    color: white;
-    background-color:rgba(38, 139, 134, 0.79) ;
+.navbar-toggle-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(20, 184, 166, 0.18);
+  box-shadow: 0 6px 22px rgba(20, 184, 166, 0.25), inset 0 0 0 1px rgba(20, 184, 166, 0.4);
 }
 
+.navbar-toggle-btn svg {
+  font-size: 22px;
+  color: var(--frost) !important;
+}
 
-@media (max-width: 805px) {
-  .navbar-toggle-btn  {
-    display: block;
-  
-  }
-
-  
+/* ---------- Sliding glass sidebar ---------- */
 .navbar-container {
   position: fixed;
   top: 0;
-  left: -850px;
-  width: 290px;
-  height: 100%;
-  backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.354);
-  transition: left 0.3s ease;
-  padding: 1rem;
-  z-index: 1000;
+  left: 0;
+  height: 100vh;
+  width: 300px;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 36px 32px;
+  background: rgba(11, 18, 16, 0.55);
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  border-right: 1px solid rgba(245, 247, 246, 0.1);
+  box-shadow: 12px 0 40px rgba(0, 0, 0, 0.35);
+  transform: translateX(-105%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar-container.open {
-  display: flex;
-  gap: 4.5rem;
-  flex-direction: column;
-  left: 0;
-  
-}
-
-.navbar-toggle-btn {
- background-color: rgba(12, 12, 12, 0);
- border-color: black;
- border-radius:10px ;
-  position: fixed;
-  top: 0.5rem;
-  left: 1rem;
-  font-size: 3rem;
-  
-  border: none;
-  color: rgb(251, 247, 247);
-  cursor: pointer;
-  z-index: 1100;
+  transform: translateX(0);
 }
 
 .navbar-close-btn {
-  display: block;
-  font-size: 2rem;
-  background: none;
+  align-self: flex-end;
+  width: 38px;
+  height: 38px;
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
-  color: rgb(255, 247, 247);
-  margin-left: 80%;
+  border-radius: 10px;
+  background: rgba(245, 247, 246, 0.06);
   cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.navbar-close-btn:hover {
+  background: rgba(20, 184, 166, 0.18);
+  transform: rotate(90deg);
+}
+
+.navbar-close-btn svg {
+  font-size: 16px;
+  color: var(--frost) !important;
+}
+
+.navbar-container h2 {
+  font-family: "Poppins", "Inter", "Segoe UI", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  margin: 0 0 28px;
+  padding-bottom: 18px;
+  width: 100%;
+  border-bottom: 1px solid rgba(245, 247, 246, 0.14);
+  background: linear-gradient(90deg, var(--frost) 0%, var(--emerald) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .navbar-btn {
-    width: 250px;
-    height: 50px;
-    border-radius: 27px;
-    border:1px solid rgb(24, 98, 73);
-    background-color: rgb(239, 250, 246);
-}
- 
-.navbar-btn:hover {
-  color: white;
-  background-color: rgb(50, 148, 133);
-} 
-    
-
-    .navbar-container:not(.open) .nav-btn {
-    display: none;
-  }
-
-  .navbar-container:not(.open) .nav-close-btn {
-    display: none;
-  }
-
-}
-
-
-html h3 ,h6 ,h5,h4 {
-    font-family: 'Montserrat', sans-serif;;
-}
-
-
-
-.text-home {
-    position: relative;
-    margin-top: 6rem;
-}
-
-.text-home h2  {
-    color: aliceblue;
-    margin-left: 5rem;
-
-}
-
-.btn button {
-    border: none;
-    color: rgb(255, 255, 255);
-    background-color: rgba(36, 102, 117, 0);
-    width: 100px;
-    height: 20px;
-    border-radius: 12px;
-    
-    font-family: Arial, Helvetica, sans-serif;
-}
-.btn button:hover {
-    border: none;
-    border-radius: 12px;
-      color: rgb(36, 102, 117); 
-    background-color:  rgb(249, 252, 252);;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.black {
-    position: relative;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.356);
-}
-.homepage-plan {
-    
-    position: relative;
-    height: 60vh;
-    width: 100%;
-} 
-.toggle-btn  {
-    color: rgb(123, 119, 119);
-}
-
-
-.bgd-img {
-  position: relative;
-  margin-left: 0.5%;
-  width: 99%;
-  height: 60vh;
-  object-fit: cover;
-  z-index: 1;
-  border-radius: 13px;
-  background-color: rgba(240, 248, 255, 0.511);
-}
-
-.overlay-plan {
-  position: relative;
-  z-index: 2;
-  left: 0;
   width: 100%;
-  height: 60vh;
-  color: white;
-  text-align: center;
-  padding-top: 15%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--slate);
+  font-family: "Inter", "Segoe UI", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  padding: 13px 14px;
+  margin: 2px 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease, padding-left 0.2s ease;
 }
 
-.btns-container {
-    position: absolute;
-    top: 0.5%;right: 0%;
-    padding: 0px;
-    display: flex;
-    flex-direction:row ;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1px;
-    width: 100%;
-    height: 10%;
-    
-    background-color: rgba(50, 116, 135, 0);
+.navbar-btn:hover {
+  color: var(--frost);
+  background: rgba(20, 184, 166, 0.14);
+  padding-left: 18px;
 }
 
-
-@media (max-width: 798px) {
-.text-home  {
-  position: absolute;
-  top: 1rem;
-  left: 70%;
-  transform: translateX(-50%);
-  z-index: 3;
-}
-
+/* ---------- Hero text ---------- */
 .text-home {
-    padding-right: 3rem;
+  position: relative;
+  z-index: 5;
+  max-width: 640px;
 }
 
 .text-home h2 {
-    position: relative;
-    font-size: 1.3rem;
-    margin: 0.3rem ;
-    width: 20rem;
-    
+  font-family: "Poppins", "Inter", "Segoe UI", sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.3;
+  letter-spacing: -0.4px;
+  color: var(--frost);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  margin: 0;
 }
 
-  .overlay-plan {
-    padding-top: 10%;
+.text-home h2::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin-top: 20px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--emerald), var(--emerald-2));
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .black {
+    padding: 18px 20px 30px;
   }
 
-  .homepage-plan {
-    height: auto; 
-    min-height: 60vh; 
+  .navbar-container {
+    width: 82%;
+    max-width: 300px;
+    padding: 28px 24px;
   }
 
-  .bgd-img,
-  .overlay-plan {
-    height: auto;
-    min-height: 60vh;
+  .text-home h2 {
+    font-size: 23px;
+    max-width: 92%;
   }
 
-  .bgd-img {
-    height: 30vh;
+  .navbar-toggle-btn {
+    top: 16px;
+    left: 16px;
+    width: 42px;
+    height: 42px;
   }
 }
-
-
-
-/*2compo planPicsText style -----------------*/
-#body-picsText {
-    display: flex;
-    flex-direction: row;
-    margin: 0.5%;
-    padding: 0%;
-    position: relative;
-    margin-top: 2%;
-    
-
 }
-.pics-container {
-    position: relative;
-    top: 20%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 50%;
-    height: 80%;
-    border-radius: 20%;
-
-}
-#seaPhoto,#beachPhoto,#airplanePhoto {
-    border-radius: 80px;
-    height: 50vh;
-    width: 15vw;
-
-}
-#beachPhoto {
-    border: 7px solid rgb(254, 252, 252);
-    position: relative;
-    right: 0;
-    right: 20%;
-    margin-top: 30%;
-}
-#airplanePhoto {
-    border: 5px solid white;
-    position: relative;
-    right: 40%;
-    margin-top: 60%;
-}
-.container1 {
-    text-wrap: 100%;
-   
-}
- 
-.container2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    height: 60%;
-    
-}
-p ,h6 {
-    color: rgb(40, 100, 98);
-}
-.side {
-    height: 5%;
-}
-
-@media(max-width:650px){
-    #seaPhoto,#beachPhoto,#airplanePhoto {
-        display: none;
-    }
-}
-
-/*----------- 3compo :TOP-DESTINATIONS CSS---------*/
-
-.top-text h1 {
-    color: rgb(19, 59, 72);
-    margin-top: 0rem;
-    margin-left: -1rem;
-}
-
-.scroll-wrapper h1,h4 {
-      margin-left: 2rem;
-}
- .destination img {
-    position: relative;
-    left: 0;
-    padding: 0rem;
-    margin: 0.01rem;
-    object-fit: cover;
-    width: 180px;
-    height: 250px;
-    border-radius: 8px;
-   
-} 
-
-.destination h5 {
-    margin-top: 0.3rem;
-}
-.group {
-    height: 45vh;
-    position: sticky;
-    padding: 0 2.8rem 0 ;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 23px;
-  scroll-behavior: smooth;
-  animation: spin 10s infinite linear;
-  background-color: rgba(247, 252, 250, 0.37);;
-  
-} 
-
-.scroll-wrapper {
-  overflow-x: auto;
-  height: 60vh; /* simulate long scroll */
-  position: relative;
-}
-
-.scroll-wrapper::-webkit-scrollbar {
-    display: none;
-}
-
-@keyframes spin {
-    from {translate: 0;}
-    to { translate: -100%;}
-}
-
-
-
- .destination {
-    background-color: rgb(245, 249, 249);
-    flex: 0 0 auto;
-    margin: 1rem;
-    padding: 0.3rem;
-    flex-wrap: wrap;
-    border-radius: 12px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.235);
-} 
-
- bottom-text {
-    margin-top: 50px;
-}
-.icon-b {
-    color: rgb(208, 209, 212);
-}
-.icon-b h5 {
-    color: rgb(181, 182, 183);
-}
-
-.Top-Destinations {
-    margin: 0%;
-    padding: 0%;
-    margin-right: 0.5%;
-   
-    flex-direction: row;
-    justify-content: start;
-    align-items: center;
-    width: 100%;
-    height: 85%;
-    border-radius: 12px;
-   
-}
-.top-text { 
-  margin-left: 3%;
-
-}
-.destination h5 {
-    margin-left: 4rem;
-}
-
-@media(max-width:796px){  
-
-  .destination img {
-    width: 150px;
-    height: 20vh;
-    border-radius: 12px;
-  }
-
-  .scroll-wrapper {
-    font-size:0.7rem ;
-  }
-
-
-}
-.destinations-carousel {
-  display: flex;
-  gap: 23px;
-  position: relative;
-  scroll-behavior: smooth;
-  background-color: rgba(127, 255, 212, 0.37);
-  width: max-content; /* allows it to stretch horizontally */
-  will-change: transform;
-  
-  
-}
-
-html , body {
-    overflow-x: hidden;   
-  scroll-behavior: smooth;
-}
-
-.destination {
-    flex: 0 0 auto;
-    flex-wrap: wrap;
-
-}
-.scroll-btn  {
-    position: relative;
-    
-    left: 5%;
-      border-radius: 5px;
-    border: none;
-    background-color:  rgb(40, 100, 98); 
-    color:  rgb(223, 231, 230);
-    width: 100px;
-    height: 40px;
-}
-
-.scroll-btn :hover {
-    border-radius: 5px;
-    border: none;
-    background-color:  rgb(40, 100, 98); 
-    color:  rgb(223, 231, 230);;
-    width: 100px;
-    height: 50px;
-}
-
-
-/*------4compo:SHOW PLAN STYLE ---------------------*/
-
-.show-plan-container {
-    margin-top: 10vh;
-}
-
-.show-plan {
-    display: flex;
-    flex-direction: column;
-   background-color: rgba(56, 54, 54, 0.352);
-   padding: 0;
-   height: 37vh;
-   border-bottom-right-radius: 30px;
-   border-top-left-radius: 20px;
-   border-radius: 12px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.637);
-
-}
-
-.show-plan h2  {
-    margin-left:6rem ;
-    margin-top: 2rem;
-    color: aliceblue;
-}
-
-.show-plan h5  {
-    color: aliceblue;
-    margin-top: 4rem;
-}
-.show-plan-container {
-     display: flex;
-    justify-content: center;
-    align-items: end;
-    gap: 45px;
-}
-.s-btn  {
-    margin-top: 1rem;
-    position: relative;
-    border-radius: 5px;
-    border: none;
-    color:  rgb(40, 100, 98); 
-    background-color:  rgb(249, 252, 252);;
-    width: 200px;
-    height: 45px;
-    margin-left: 14%;
-    font-size: large;
-    z-index: 10;
-    
-}
-
-.s-btn:hover {
-    background-color:  rgb(40, 100, 98); 
-    color:  rgb(244, 248, 248);;
-   
-    
-    
-
-}
- .show h3  {
-    border-radius: 2px;
-    background-color: rgba(74, 74, 74, 0.107);
-    align-self: start;
-    position: relative;
-    padding-top: 60%;
-    padding-left: 40%;
-    color: aliceblue;
-   
-
- }
- .show h6 {
-    color: aliceblue;
-    background-color: rgba(74, 74, 74, 0.107);
- }
-
-@media(max-width:796px){
-    .show-container {
-        display: flex;
-        flex-direction:column ;
-        flex-wrap: wrap;
-        gap: 2rem;
-        justify-content: center;
-        align-items: center;
-        
-    }
-}
-
-@media(max-width:650px){
-    .show-plan-container {
-        position: relative;
-        margin-top: 5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-}
- 
-
-
-/*-------5compo:COMMENTS SECTION -------------*/
-.comments-body  {
-   position: relative;
-   top: 30px;
-   height: 30vh;
-}
-.top-comments h1 {
-    position: relative;
-    text-align: center;
-    padding: 1rem;
-}
-
-.top-comments h4 {
-    margin-top: 5rem;
-    position: relative;
-    left: 35%;
-}
-  
-  
-  .comments-container {
-    margin-bottom:auto ;
-    margin: 0 auto;
-    position: relative;
-    scroll-behavior: smooth;
-    display: flex;
-    gap: 2rem;
-    overflow-x: hidden ;
-    overflow-y: auto;
-     border-radius: 20px;
-    width: 60%;
-    height: 40vh;
-}
-
-.scroll-comments-btn {
-    position: relative;
-    display:flex;
-    gap: 80%;
-    margin-left: 13%;
-    top: 30%;
-   
-}
-
-.comment {
-    position: relative;
-     flex:0 0 auto;
-    text-align: center;
-    position: relative;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 1.5rem;
-    background-color: rgba(19, 29, 42, 0.612);
-    width: 360px;
-    height: 30vh;
-    border-radius: 12px;
-    margin-left: 2rem;
-} 
-.comment h5 {
-  padding-top: 0.3rem;
-}
-
-.scroll-comment {
-    position: relative;
-    top: 40%;
-    border-radius: 5px;
-    border: none;
-    background-color:  rgb(50, 78, 151); 
-    color:  rgb(255, 255, 255);;
-    width: 50px;
-    height: 30px;
-}
-
- .scroll-comment:hover {
-    color:  rgb(45, 70, 180); 
-    background-color:  rgb(255, 255, 255);;
-    z-index: 10;
-}
-.pov {
-    display: flex;
-    flex-wrap: wrap;
-    width: 20%;
-}
-
-.comment h4 {
-    color:white;
-    margin: 0.5rem 0;
-    position: relative;
-    width: 70%;
-    line-height: 1.4;
-    
-}
-
-@media(max-width:450px){
-    .top-comments h1 {
-        margin-top: 1rem;
-        font-size: 1.4rem;
-        margin-left: -2rem;
-    }
-    .top-comments h4 {
-       
-        margin-left: 0.5rem;
-    }
-
-    .comment {
-        position: relative;
-        margin-top: 2rem;
-        height: 30vh;
-        margin-left: 0.5rem;
-       
-    }
-
-    .scroll-comments-btn {
-       margin-left: 1rem;
-    }
-
-    .comment h1  {
-        font-size: 25px;
-    }
-
-    .comment h4 {
-        font-size: 0.9rem;
-    }
-}
-
-
-
-/*---------6compo:footer ------*/
-
- .footer-container-plan {
-    position: relative;
-    display: flex;
-    grid-template-rows: auto;
-    justify-content: center;
-    gap: clamp(0.1rem ,2.5rem ,2.5rem);
-    margin-top: 50vh;
-    padding-top: -2rem;
-    max-width: 100%;
-    height: 40vh;
-    background-color: rgb(36, 101, 99); 
-} 
-.footer-item-s {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    margin-top: 6vh;
-    margin-left: 8rem;
-} 
-
-@media(max-width:876px){
-    .footer-plan {
-        margin-top: 27rem;
-    }
-
-    .footer-container-plan {
-    display: flex;
-    grid-template-rows: 1fr 1fr ;
-    gap: 1rem;
-   
-    margin-top: 50vh;
-    padding-top: -2rem;
-    max-width: 100%;
-    height: 70vh;
-    background-color: rgb(36, 101, 99); 
-} 
-.footer-item-plan {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    margin-top: 6vh;
-    margin-left: 2rem;
-} 
-
-}
-
-@media(max-width:540px){
-  
-     .footer-container-plan {
-        padding-right: 6rem;
-        height: 60vh;
-        padding-bottom: 2rem;
-        display: grid;
-        gap: 0rem;
-        grid-template-columns: 1fr 1fr   ;
-       
-    }
-
-}
-

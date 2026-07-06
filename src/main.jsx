@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import HomePage from './components/HOME/HomePage.jsx'
+
 import Signup from './components/Signup/Signup.jsx'
 import Login from './components/Login/Login.jsx'
 import Plan from './components/Plan/Plan.jsx'
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
    
    {
     path: "/",
-    element: <HomePage />,
+    element: <Plan />,
   },
     {
     path: "/Signup",
@@ -32,10 +32,6 @@ const router = createBrowserRouter([
    {
     path: "/Login",
     element: <Login />,
-  },
-  {
-    path: "/Plan",
-    element: <Plan />,
   },
    {
       path: "/Flights",
@@ -62,16 +58,6 @@ const router = createBrowserRouter([
         element:<AboutUs/>,
       },
      
-      
-       
-      
-          
-  
-
-
-
-
-
 
 ]);
 createRoot(document.getElementById('root')).render(
