@@ -1,0 +1,81 @@
+:root {
+  --teal-deep: #357a6e;
+  --line: rgba(255, 255, 255, 0.12);
+  --muted: rgba(198, 199, 199, 1);
+}
+
+.footer-plan {
+  width: 100%;
+  background: var(--teal-deep);
+  font-family: "Inter", "Segoe UI", sans-serif;
+  padding: 56px 32px 40px;
+  box-sizing: border-box;
+}
+
+/* Grid instead of flex + nth-child(order) hacks — the column order now
+   just follows the array order in Footer.jsx, so nothing to keep in sync. */
+.footer-container-plan {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.footer-item-s {
+  min-width: 0; /* lets long text/links wrap instead of overflowing the grid track */
+}
+
+.footer-item-s h5 {
+  font-family: "Poppins", "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 18px;
+}
+
+.footer-link,
+.footer-text {
+  display: block;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 2.1;
+  margin: 0;
+  text-decoration: none;
+  width: fit-content;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.footer-text {
+  cursor: default;
+  width: auto;
+}
+
+.footer-link:hover {
+  color: #ffffff;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .footer-container-plan {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .footer-plan {
+    padding: 44px 24px 32px;
+  }
+
+  .footer-container-plan {
+    gap: 32px;
+  }
+}
+
+@media (max-width: 440px) {
+  .footer-container-plan {
+    grid-template-columns: 1fr;
+  }
+}

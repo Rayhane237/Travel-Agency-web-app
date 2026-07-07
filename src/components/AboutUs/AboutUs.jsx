@@ -1,11 +1,11 @@
 import React from 'react'
-import './AboutUs.css'
+import Nav from '../Nav/Nav'
 import HeaderAbout from './composAbout/HeaderAbout'
-import TopContent from './composAbout/TopContent'
-import MidContent from './composAbout/MidContent'
-import Team from './composAbout/Team'
-import BottomIcons from './composAbout/BottomIcons'
-import FooterAbout from './composAbout/FooterAbout'
+import TopContent from './composAbout/TOPcontent/TopContent'
+
+import Team from './composAbout/team/Team'
+import BottomIcons from './composAbout/bottom/BottomIcons'
+import Footer from '../Footer/Footer'
 
 
 
@@ -14,6 +14,10 @@ const AboutUs = () => {
 
   return (
     <div>
+       <div>
+        <Nav />
+       </div>
+
            <div className='compo1'>
             <HeaderAbout/>
 
@@ -26,23 +30,19 @@ const AboutUs = () => {
            </div>
             <br />
          
-            <div className='compo3'>
-            <MidContent />
-           </div>
-             <br />
-             
-            <div className='compo4'>
+
+           < div className='compo4'>
             <Team />
            </div>
-            <br />
 
-                 
+            <br />
+          
             <div className='compo5'>
             <BottomIcons />
            </div>
               <br />
            <div className='compo6'>
-            <FooterAbout />
+            <Footer />
            </div>
 
 

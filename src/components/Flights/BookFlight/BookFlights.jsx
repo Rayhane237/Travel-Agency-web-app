@@ -1,6 +1,6 @@
 import React from 'react'
 import HeaderBook from './HeaderBook'
-import Footer from "./Footer"
+import Footer from "../../Footer/Footer"
  //import Payloads from "./Payloads"
 
 const BookFlights = () => {

@@ -1,7 +1,9 @@
 import React from 'react';
-import comments from "../../../assets/comments.jpg";
+import comments from "../../../../assets/comments.jpg";
 import { LiaStarSolid } from "react-icons/lia";
 import  {useRef} from "react";
+
+import "./Comments.css"
 
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";

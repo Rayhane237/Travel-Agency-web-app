@@ -1,58 +1,55 @@
 import React, { useState } from 'react';
-import "../Flights.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
+// Driving the four inputs from one array keeps the JSX below short and makes
+// adding/removing a field a one-line change instead of touching multiple spots.
+const fields = [
+  { name: "from", label: "From", type: "text", placeholder: "Departure city" },
+  { name: "to", label: "To", type: "text", placeholder: "Destination city" },
+  { name: "date", label: "Date", type: "date", placeholder: "" },
+  { name: "passenger", label: "Passenger", type: "text", placeholder: "Passenger name" },
+];
+
 const Payloads = () => {
   const navigate = useNavigate();
 
-  
   const [formData, setFormData] = useState({
     from: "",
     to: "",
     date: "",
-    passenger: "" 
+    passenger: ""
   });
 
   const [errData, setErrData] = useState({
-    errFrom: "",
-    errTo: "",
-    errDate: "",
-    errPassenger: ""
+    from: "",
+    to: "",
+    date: "",
+    passenger: ""
   });
+
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleChange = (name, value) => {
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (value !== "") {
+      setErrData((prev) => ({ ...prev, [name]: "" }));
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    let errors = {
-      errFrom: "",
-      errTo: "",
-      errDate: "",
-      errPassenger: ""
-    };
-
+    const errors = { from: "", to: "", date: "", passenger: "" };
     let isValid = true;
 
-    if (!formData.from) {
-      errors.errFrom = "This input is required";
-      isValid = false;
-    }
-
-    if (!formData.to) {
-      errors.errTo = "This input is required";
-      isValid = false;
-    }
-
-    if (!formData.date) {
-      errors.errDate = "This input is required";
-      isValid = false;
-    }
-
-    if (!formData.passenger) {
-      errors.errPassenger = "This input is required";
-      isValid = false;
-    }
+    fields.forEach(({ name }) => {
+      if (!formData[name]) {
+        errors[name] = "This field is required";
+        isValid = false;
+      }
+    });
 
     setErrData(errors);
 
@@ -61,15 +58,13 @@ const Payloads = () => {
       return;
     }
 
-    const payload = {
-      from: formData.from,
-      to: formData.to,
-      date: formData.date,
-      passenger: formData.passenger
-    };
+    setSubmitting(true);
 
     try {
-      const res = await axios.post(`${import.meta.env.VITE_SERVER_HOST}/book`, payload);
+      const res = await axios.post(
+        `${import.meta.env.VITE_SERVER_HOST}/book`,
+        { ...formData }
+      );
 
       if (res.status === 201 || res.status === 304) {
         toast.success("Flight booked successfully!", {
@@ -85,69 +80,36 @@ const Payloads = () => {
     } catch (error) {
       const msg = error.response?.data?.message || "Something went wrong";
       toast.error(msg);
+    } finally {
+      setSubmitting(false);
     }
   };
 
   return (
     <div className='book-flight'>
-      <form className='flight-form' onSubmit={handleSubmit}>
+      <form className='flight-form' onSubmit={handleSubmit} noValidate>
         <header className='flight-header'>
           <h2>Plan your journey with ease and confidence!</h2>
         </header>
 
-        <label>From:</label>
-        <input
-          type="text"
-          placeholder='Departure city'
-          value={formData.from ?? ""} 
-          onChange={(e) => {
-            const value = e.target.value;
-            setFormData({ ...formData, from: value });
-            if (value !== "") setErrData({ ...errData, errFrom: "" });
-          }}
-        />
-        {errData.errFrom && <h5 style={{ color: "red" }}>{errData.errFrom}</h5>}
+        {fields.map(({ name, label, type, placeholder }) => (
+          <div className='form-group' key={name}>
+            <label htmlFor={name}>{label}</label>
+            <input
+              id={name}
+              type={type}
+              placeholder={placeholder}
+              value={formData[name]}
+              aria-invalid={!!errData[name]}
+              className={errData[name] ? 'input-error' : ''}
+              onChange={(e) => handleChange(name, e.target.value)}
+            />
+            {errData[name] && <span className='field-error'>{errData[name]}</span>}
+          </div>
+        ))}
 
-        <label>To:</label>
-        <input
-          type="text"
-          placeholder='Destination city'
-          value={formData.to ?? ""}
-          onChange={(e) => {
-            const value = e.target.value;
-            setFormData({ ...formData, to: value });
-            if (value !== "") setErrData({ ...errData, errTo: "" });
-          }}
-        />
-        {errData.errTo && <h5 style={{ color: "red" }}>{errData.errTo}</h5>}
-
-        <label>Date:</label>
-        <input
-          type="date"
-          value={formData.date ?? ""}
-          onChange={(e) => {
-            const value = e.target.value;
-            setFormData({ ...formData, date: value });
-            if (value !== "") setErrData({ ...errData, errDate: "" });
-          }}
-        />
-        {errData.errDate && <h5 style={{ color: "red" }}>{errData.errDate}</h5>}
-
-        <label>Passenger:</label>
-        <input
-          type="text"
-          placeholder='Passenger name'
-          value={formData.passenger ?? ""}
-          onChange={(e) => {
-            const value = e.target.value;
-            setFormData({ ...formData, passenger: value });
-            if (value !== "") setErrData({ ...errData, errPassenger: "" });
-          }}
-        />
-        {errData.errPassenger && <h5 style={{ color: "red" }}>{errData.errPassenger}</h5>}
-
-        <button type='submit' id='confirm-btn'>
-          Confirm Booking
+        <button type='submit' id='confirm-btn' disabled={submitting}>
+          {submitting ? "Booking..." : "Confirm booking"}
         </button>
       </form>
       <ToastContainer />

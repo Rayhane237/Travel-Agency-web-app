@@ -1,15 +1,21 @@
 import React from 'react'
-import "./Hotels.css"
+
 import Header from "./SeeHotels/Header"
-import Research from "./SeeHotels/Research"
-import Destinations from './SeeHotels/Destinations'
-import Kayaking from './SeeHotels/Kayaking'
-import Footer from "./SeeHotels/FooterHotel"
+import Research from "./SeeHotels/research/Research"
+import Destinations from './SeeHotels/Destinations/Destinations'
+import Kayaking from './SeeHotels/Kay/Kayaking'
+import Footer from "../Footer/Footer"
+import Nav from '../Nav/Nav'
 
 const Hotels = () => {
   return (
     <div>
+      <div>
+          <Nav />
+
+      </div>
             <div className='compo1'>
+             
                  <Header />
             </div>
              

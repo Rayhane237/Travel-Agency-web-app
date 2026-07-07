@@ -1,11 +1,11 @@
 import React from 'react';
 import "./Plan.css";
 import HomePlan from './PlanCompos/Homeplan/HomePlan';
-import PlanPicsText from './PlanCompos/PlanPicsText';
-import Destinations from './PlanCompos/Destinations';
-import ShowPlan from './PlanCompos/ShowPlan';
-import Footer from './PlanCompos/Footer';
-import Comments from './PlanCompos/Comments';
+import PlanPicsText from './planPics/PlanPicsText';
+import Destinations from './PlanCompos/Destination/Destinations';
+import ShowPlan from './PlanCompos/ShowPlan/ShowPlan';
+import Footer from '../Footer/Footer';
+import Comments from './PlanCompos/Comments/Comments';
 
 function Plan() {
   return (
@@ -25,6 +25,7 @@ function Plan() {
       <div className="comp5">
         <Comments />
       </div>
+      <br />
       <div className="comp6">
         <Footer />
       </div>

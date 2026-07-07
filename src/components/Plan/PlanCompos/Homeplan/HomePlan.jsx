@@ -1,11 +1,13 @@
 import React from 'react'
 import  { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Flight from "./../../../../assets/Flight.jpg"
+
 import { IoIosMenu } from 'react-icons/io';
 import { RiCloseLargeFill } from 'react-icons/ri';
-import "../Plan.css"
+import "../Homeplan/Homeplan.css"
 
+import Flight from "../../../../assets/home.jpg"
+import Nav from '../../../nav/nav.jsx';
 
 const HomePlan = () => {
       
@@ -47,8 +49,13 @@ const HomePlan = () => {
           
     
   return (
+    <div>
+      <Nav />
            <header style={background}>
+             
+            
                               <div className='black'> 
+                               
                                       {!sidebarOpen && (
                                         <button className='navbar-toggle-btn' onClick={toggleSidebar}>
                                               <IoIosMenu style={{color:"grey"}} />
@@ -76,7 +83,7 @@ const HomePlan = () => {
                          
                      </div>
                   </header>
-      
+      </div>
   )
 }
 export default HomePlan

@@ -1,0 +1,67 @@
+/* ==========================================================================
+   Bottom Icons — final About Us section
+   A row of 4 light-grey icon + label items
+   ========================================================================== */
+
+.explore-icons-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 56px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 48px 64px;
+  box-sizing: border-box;
+}
+
+.explore-icon-b {
+  flex: 1 1 160px;
+  max-width: 200px;
+  display: flex;
+  justify-content: center;
+}
+
+.explore-icon-b h5 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #8a8f96;
+  margin: 0;
+  text-align: center;
+}
+
+/* react-icons render as inline SVGs and inherit `color` via currentColor */
+.explore-icon-b h5 svg {
+  color: #d7dade;
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 900px) {
+  .explore-icons-container {
+    gap: 36px;
+  }
+
+  .explore-icon-b {
+    flex: 1 1 40%;
+  }
+}
+
+@media (max-width: 480px) {
+  .explore-icons-container {
+    padding: 32px 20px 48px;
+  }
+
+  .explore-icon-b {
+    flex: 1 1 100%;
+  }
+
+  .explore-icon-b h5 svg {
+    /* size={100} sets width/height inline via the react-icons prop */
+    width: 64px !important;
+    height: 64px !important;
+  }
+}

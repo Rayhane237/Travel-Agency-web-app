@@ -1,307 +1,271 @@
-/*--Header :compo1-------*/
- * {
-  margin: 0%;
-  padding: 0%;
+:root {
+  --teal-deep: #357a6e;
+  --teal-mid: rgb(36, 102, 117);
+  --muted: rgba(198, 199, 199, 1);
+  --error: #e04b4b;
+}
+
+* {
   box-sizing: border-box;
 }
 
-.top-text  h1 {
-    margin-top: clamp(2rem,5rem,10rem);
-    margin-left: -10rem;
-}
- 
-.top-text h3 {
-    margin-top: 3rem;
-    margin-right: 1rem;
-}
-
-.navbar-toggle-btn, .navbar-close-btn {
-    display: none;
-}
-
-.navbar-container {
-    position: relative;
-    background-color: rgb(255, 255, 255);
-    height: 5vh;
-    display: flex;
-    gap: 5%;
-    z-index: 100;
-}
-
-.navbar-container h2 {
-    margin-top: 0.5rem;
-    margin-left: 1rem;
-    font-size: 17px;
-    color: rgb(21, 75, 82);
-}
-
-.navbar-btn {
-    position: relative;
-    margin-top: 0.1rem;
-    border-radius: 14px;
-    color: rgba(34, 122, 118, 0.993);
-    background-color: rgb(255, 255, 255);
-    border: none;
-    font-size: 1.1rem;
-    width: 10%;
-    height: 30px;
-}
-.navbar-btn:hover {
-    color: white;
-    background-color:rgba(38, 139, 134, 0.79) ;
-}
-
-
-@media (max-width: 805px) {
-  .navbar-toggle-btn  {
-    display: block;
-  
-  }
-
-  
-.navbar-container {
-  position: fixed;
-  top: 0;
-  left: -850px;
-  width: 290px;
-  height: 100%;
-  backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.354);
-  transition: left 0.3s ease;
-  padding: 1rem;
-  z-index: 1000;
-}
-
-.navbar-container.open {
-  display: flex;
-  gap: 4.5rem;
-  flex-direction: column;
-  left: 0;
-  
-}
-
-.navbar-toggle-btn {
- background-color: rgba(12, 12, 12, 0);
- border-color: black;
- border-radius:10px ;
-  position: fixed;
-  top: 0.5rem;
-  left: 1rem;
-  font-size: 3rem;
-  
-  border: none;
-  color: rgb(251, 247, 247);
-  cursor: pointer;
-  z-index: 1100;
-}
-
-.navbar-close-btn {
-  display: block;
-  font-size: 2rem;
-  background: none;
-  border: none;
-  color: rgb(16, 92, 87);
-  margin-left: 80%;
-  cursor: pointer;
-}
-
-.navbar-btn {
-    width: 250px;
-    height: 50px;
-    border-radius: 27px;
-    border:1px solid rgb(24, 98, 73);
-    background-color: rgb(239, 250, 246);
-}
- 
-.navbar-btn:hover {
-  color: white;
-  background-color: rgb(50, 148, 133);
-} 
-    
-
-    .navbar-container:not(.open) .nav-btn {
-    display: none;
-  }
-
-  .navbar-container:not(.open) .nav-close-btn {
-    display: none;
-  }
-
-}
-
-
-
-
-
-.book-flight {
-    background-color: rgb(255, 255, 255);
-    margin-top: -6rem;
-    height: 90vh;
-}
-.flight-header {
-  margin-top: 2rem;
-  
-}
-
-
-.flight-form {
- width: 100vw;
-  
-    padding: 2rem;
-    background-color: rgb(214, 243, 236);
-  margin-top: 5rem;
+/* ===== Hero / nav wrapper =====
+   Scoped name on purpose — a generic class like ".black" is easy to
+   accidentally reuse on another page and have one silently overwrite
+   the other, since this project's CSS isn't module-scoped. */
+.booking-hero {
+  position: relative;
+  min-height: 480px;
+  background: linear-gradient(rgba(10, 30, 30, 0.55), rgba(10, 30, 30, 0.7)),
+    linear-gradient(135deg, #143b3a, #1f5c58);
+  padding: 24px 24px 140px;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  overflow: visible;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* ===== Menu toggle ===== */
+.navbar-toggle-btn {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
-.flight-form input {
-  border-color: rgb(19, 70, 82);
-  padding: 0.8rem;
-  border-radius: 6px;
-  width: 25vw;
-
-  border: 1px solid #ccc;
+.navbar-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
 
-header h2 {
-  color: rgb(34, 101, 78);
+/* ===== Sidebar ===== */
+.navbar-container {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 260px;
+  height: 100vh;
+  background: #fff;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+  transition: left 0.25s ease;
+  z-index: 100;
 }
 
-html label {
-    font-family: 'Montserrat', sans-serif;;
+.navbar-container.open {
+  left: 0;
 }
- .flight-form label {
-    padding-right:15rem;
-  }
 
+.navbar-container h2 {
+  color: var(--teal-mid);
+  font-size: 20px;
+  margin: 0 0 20px;
+}
+
+.navbar-close-btn {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  color: rgb(16, 92, 87);
+  font-size: 20px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.navbar-btn {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 12px 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #222;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.navbar-btn:hover {
+  background: rgba(53, 122, 110, 0.1);
+  color: var(--teal-deep);
+}
+
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 90;
+}
+
+/* ===== Hero text ===== */
+.text-home {
+  max-width: 560px;
+  margin: 64px auto 0;
+  text-align: center;
+  color: #fff;
+}
+
+.text-home h3 {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+
+.text-home h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.text-home p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+  margin: 0;
+}
+
+/* ===== Floating booking card =====
+   Centered via the parent's flexbox (align-items: center) rather than
+   margin:auto, so it stays centered no matter what width the ancestor
+   elements end up being. */
+.book-flight {
+  width: 100%;
+  max-width: 640px;
+  margin-top: -100px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.flight-form {
+  background: #fff;
+  border-radius: 20px;
+  padding: 36px 32px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.flight-header {
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.flight-header h2 {
+  color: #16302d;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+}
+
+.form-group input {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus {
+  border-color: var(--teal-deep);
+  box-shadow: 0 0 0 3px rgba(53, 122, 110, 0.15);
+}
+
+.form-group input.input-error {
+  border-color: var(--error);
+}
+
+.field-error {
+  color: var(--error);
+  font-size: 12px;
+  font-weight: 500;
+}
 
 #confirm-btn {
-  margin-top: 1rem;
-  height: 38px;
-  width: 360px;
-  background-color: antiquewhite;
+  margin-top: 8px;
+  background: var(--teal-deep);
+  color: #fff;
   border: none;
-  border-radius: 8px;
+  padding: 14px 0;
+  border-radius: 10px;
+  font-size: 15px;
   font-weight: 600;
-
-}
-#confirm-btn:hover {
-  background-color: rgb(100, 68, 25);
-  color: antiquewhite;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
 }
 
-form h5 {
-  margin-right: 9rem;
+#confirm-btn:hover:not(:disabled) {
+  background: #2c6459;
+  transform: translateY(-1px);
 }
 
-
-@media(max-width:770px){
-  .flight-form input {
-    width: 360px;
-    
-  }
-   .flight-form label {
-    padding-right: 14rem;
-  }
-
-
-
-  .flight-form h4 {
-    display: none;
-  }
+#confirm-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
+/* ===== Footer wrapper spacing on this page ===== */
+.compo-footer {
+  margin-top: 64px;
+}
 
-@media(max-width:470px){
-  .flight-form input {
-    width: 300px;
-    
-  }
-   .flight-form label {
-    padding-right: 14rem;
-  }
-  
-  #confirm-btn {
-    width: 290px;
+/* ===== Responsive ===== */
+@media (max-width: 640px) {
+  .booking-hero {
+    padding: 20px 16px 160px;
   }
 
+  .text-home {
+    margin-top: 56px;
+  }
 
-  .flight-form h4 {
-    display: none;
+  .text-home h1 {
+    font-size: 26px;
+  }
+
+  .book-flight {
+    margin-top: -120px;
+  }
+
+  .flight-form {
+    padding: 28px 20px;
+    border-radius: 16px;
   }
 }
 
-
-
-/*-----------------------------Footer---------------------*/
-.footer-container-b {
-    position: relative;
-    display: flex;
-    grid-template-rows: auto;
-    justify-content: center;
-    gap: clamp(0.1rem ,2.5rem ,2.5rem);
-    margin-top: 3vh;
-    padding-top: -2rem;
-    max-width: 100%;
-    height: 40vh;
-    background-color: rgb(36, 101, 99); 
-} 
-.footer-item-b {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    margin-top: 6vh;
-    margin-left: 8rem;
-} 
-
-@media(max-width:876px){
-    
-    .footer-container-b {
-    display: flex;
-    grid-template-rows: 1fr 1fr ;
-    gap: 1rem;
-   
-    margin-top: -15vh;
-    padding-top: -2rem;
-    max-width: 100%;
-    height: 40vh;
-    background-color: rgb(36, 101, 99); 
-} 
-.footer-item-b{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    margin-top: 6vh;
-    margin-left: 2rem;
-} 
- 
-.compo3 {
-    height: 20vh;
-}
-
-}
-
-@media(max-width:540px){
-    
-     .footer-container-b {
-        margin-top: 30vh;
-        height: 60vh;
-        padding-top: 2rem;
-        padding-bottom: 1rem;
-        display: grid;
-        gap: 0rem;
-        grid-template-columns: 1fr 1fr   ;
-       
-    }
-    header h2 {
-      text-align: center;
-      padding-left: 2rem;
-      font-size: 1.3rem;
-    }
+@media (max-width: 400px) {
+  .navbar-container {
+    width: 220px;
+  }
 }

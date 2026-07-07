@@ -1,0 +1,103 @@
+.h-body {
+  padding: 32px;
+  background: #ffffff;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
+.k-top-text h3 {
+  margin: 0 0 4px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.k-top-text h2 {
+  margin: 0 0 24px;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.kayaking-container-f {
+  display: flex;
+  justify-content: center;
+}
+
+.kayaking-item-f {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  background: #24666e;
+  border-radius: 20px;
+  padding: 32px;
+  color: #ffffff;
+}
+
+.baja {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.baja h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.25;
+  max-width: 260px;
+}
+
+.baja-price {
+  flex-shrink: 0;
+  margin: 0;
+  background: #ffffff;
+  color: #24666e;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  padding: 10px 16px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.kayaking-item-f h5 {
+  margin: 0 0 28px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 420px;
+}
+
+.baja-btn {
+  width: 100%;
+  padding: 14px;
+  background: #ffffff;
+  border: none;
+  border-radius: 10px;
+  color: #24666e;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.baja-btn:hover {
+  background: #1a4c52;
+  color: #ffffff;
+}
+
+@media (max-width: 560px) {
+  .h-body {
+    padding: 20px;
+  }
+
+  .kayaking-item-f {
+    padding: 24px;
+  }
+
+  .baja h2 {
+    font-size: 20px;
+    max-width: 180px;
+  }
+}

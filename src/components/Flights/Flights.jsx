@@ -1,15 +1,19 @@
 import React from 'react'
 import "./Flights.css"
 import HeaderFlights from './Flights.compos/HeaderFlights'
-import Destinations from './Flights.compos/Destinations'
-import Kayaking from './Flights.compos/Kayaking'
-import Footer from "./Flights.compos/Footer"
+import Destinations from './Flights.compos/Destination/Destinations'
+import Kayaking from './Flights.compos/Kayaking/Kayaking'
+import Nav from '../Nav/Nav'
+import Footer from "../Footer/Footer"
 
 
 const Flights = () => {
     
   return (
     <div>
+      <div>
+        <Nav />
+      </div>
        
        <div className='compo1'>
             <HeaderFlights />
@@ -20,18 +24,16 @@ const Flights = () => {
 
        </div>
           <br />
-          
-        <div >
-           <Kayaking />
-          
-       </div>
-    
-           
-             <div className='compo4'>
-             <Footer />
-            </div>
 
-       
+      <div className='section-gap'>
+           <Kayaking />
+      </div>
+
+      <div className='compo4'>
+          <Footer />
+      </div>
+                
+           
        
 
 

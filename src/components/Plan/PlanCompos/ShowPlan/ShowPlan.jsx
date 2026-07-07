@@ -1,7 +1,9 @@
 import React from 'react'
-import flights from "../../../assets/flights.jpg";
-import hotels from "../../../assets/hotels.jpg";
+import flights from "../../../../assets/flights.jpg";
+import hotels from "../../../../assets/hotels.jpg";
 import { useNavigate } from 'react-router-dom';
+
+import "./ShowPlan.css"
 
 const ShowPlan = () => {
      

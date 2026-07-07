@@ -1,5 +1,5 @@
 import React from 'react'
-import '../AboutUs.css'
+
 import Hotel from "../../../assetsAbout/About5.jpg"
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react'

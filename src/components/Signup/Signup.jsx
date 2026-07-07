@@ -3,6 +3,8 @@ import "./SignUp.css";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import homeImg from "../../assets/home.jpg";
+import Nav from "../Nav/Nav";
 
 const EyeIcon = ({ hidden }) => (
   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.7">
@@ -155,8 +157,10 @@ const SignUp = () => {
 
   return (
     <div className="signup-page">
+      <Nav />
       <div className="signup-visual">
-        <img src="/home.jpg" alt="" aria-hidden="true" className="signup-bg" />
+      
+      <img src={homeImg} alt="" aria-hidden="true" className="signup-bg" />
         <div className="signup-visual-overlay" />
         <div className="signup-brand">
           <svg viewBox="0 0 220 40" className="brand-path" aria-hidden="true">

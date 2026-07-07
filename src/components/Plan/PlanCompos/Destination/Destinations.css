@@ -1,0 +1,187 @@
+/* ==========================================================================
+   TopDestinations.css — Phnes Travel
+   --ink:    #14181b   heading / card title
+   --teal:   #1f7a67   eyebrow label, card title, avatar fill
+   --muted:  #6b7280   secondary text
+   --line:   #e5e9e8   borders / hairlines
+   --coral:  #f16a5c   "+N" badge
+   ========================================================================== */
+
+:root {
+  --ink: #14181b;
+  --teal: #1f7a67;
+  --muted: #6b7280;
+  --line: #e5e9e8;
+  --coral: #f16a5c;
+}
+
+.scroll-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 64px 32px 48px;
+  font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+/* ---------- Header row ---------- */
+.scroll-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 36px;
+}
+
+.scroll-header h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  margin: 0 0 8px;
+}
+
+.scroll-header h1 {
+  font-family: "Poppins", "Inter", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  color: var(--ink);
+  margin: 0;
+}
+
+.see-all-btn {
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.see-all-btn:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+/* ---------- Horizontal scroll strip ---------- */
+.group {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+}
+
+.group::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- Destination card ---------- */
+.destination {
+  flex: 0 0 auto;
+  width: 280px;
+  scroll-snap-align: start;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(20, 24, 27, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.destination:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(20, 24, 27, 0.12);
+}
+
+.destination img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+}
+
+.destination-body {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 16px 18px;
+}
+
+.destination-text h5 {
+  font-family: "Poppins", "Inter", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--teal);
+  margin: 0 0 4px;
+}
+
+.destination-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ---------- Avatar stack ---------- */
+.avatar-stack {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-left: -10px;
+}
+
+.avatar:first-child {
+  margin-left: 0;
+}
+
+.avatar-extra {
+  background-color: var(--coral) !important;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .scroll-wrapper {
+    padding: 48px 20px 36px;
+  }
+
+  .scroll-header {
+    align-items: flex-start;
+  }
+
+  .scroll-header h1 {
+    font-size: 24px;
+  }
+
+  .see-all-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .destination {
+    width: 230px;
+  }
+
+  .destination img {
+    height: 150px;
+  }
+}

@@ -1,17 +1,19 @@
 import React from 'react'
-import "../AboutUs.css"
+import "./Top.css"
 
-import roses from "../../../assetsAbout/About3.jpg"
-
-
+import roses from "../../../../assetsAbout/About3.jpg"
+import Nav from '../../../nav/nav';
 
 const TopContent = () => {
 
   return (
+      <div>
+    
+           
     <div className='top-content-container'>  
-          
+        
           <div className='top-content-about'>
-          
+            
                 <div className='top-text' id='top-text1'>
                         
                     <h2>About Phnes. Travels</h2>
@@ -26,7 +28,7 @@ const TopContent = () => {
                 </div>
           </div>
     </div> 
-    
+    </div>
   )
 }
 

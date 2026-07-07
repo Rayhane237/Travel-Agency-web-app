@@ -1,0 +1,95 @@
+/* ==========================================================================
+   Team — "Meet our teams" section
+   Left-aligned heading + a row of 5 team member photo cards
+   ========================================================================== */
+
+.team-container {
+  width: 100%;
+  padding: 24px 48px 72px;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+/* ---- Header ---- */
+
+.team-header {
+  max-width: 1200px;
+  margin: 0 auto 32px;
+}
+
+.team-header h2 {
+  font-size: 26px;
+  font-weight: 800;
+  margin: 0 0 6px;
+  letter-spacing: -0.02em;
+}
+
+.team-header h3 {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* ---- Team grid ---- */
+
+.team-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.team {
+  flex: 1 1 180px;
+  max-width: 200px;
+}
+
+.team-img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.team h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #17191c;
+  margin: 0 0 2px;
+}
+
+.team h4 {
+  font-size: 13px;
+  font-weight: 400;
+  color: #7a8087;
+  margin: 0;
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 900px) {
+  .team-section {
+    gap: 20px;
+  }
+
+  .team {
+    flex: 1 1 30%;
+  }
+}
+
+@media (max-width: 600px) {
+  .team-container {
+    padding: 16px 20px 48px;
+  }
+
+  .team {
+    flex: 1 1 45%;
+  }
+
+  .team-img {
+    height: 220px;
+  }
+}

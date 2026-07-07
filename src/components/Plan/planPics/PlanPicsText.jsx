@@ -3,6 +3,7 @@ import seaPhoto from "../../../assets/photo-sea.jpeg";
 import beachPhoto from "../../../assets/photo-beach.jpeg";
 import airplanePhoto from "../../../assets/photo-airplane.jpeg";
 
+import "./PlanPicsText.css"
 const PlanPicsText = () => {
     console.log("loaded");
   return (

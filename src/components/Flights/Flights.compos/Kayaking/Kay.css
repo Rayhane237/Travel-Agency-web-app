@@ -1,0 +1,172 @@
+/* ===== Wrapper ===== */
+.f-body {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+/* ===== Header row (matches Destinations header) ===== */
+.f-top-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 28px;
+}
+
+.f-top-text h3 {
+    font-family: "Poppins", sans-serif;
+  color: rgb(36, 102, 117);
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+}
+
+.f-top-text h2 {
+     font-family: "Poppins", sans-serif;
+  color: #2c747a;
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.see-all-btn {
+     font-family: "Poppins", sans-serif;
+  border: 1px solid #d9d9d9;
+  background: #fff;
+  color: rgb(36, 102, 117);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease;
+}
+
+.see-all-btn:hover {
+  background: #f5f5f5;
+}
+
+/* ===== Main row: card + images ===== */
+.kayaking-container-f {
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+   font-family: "Poppins", sans-serif;
+  flex-wrap: wrap;
+}
+
+/* ===== Teal info card ===== */
+.kayaking-item-f {
+  flex: 1 1 380px;
+  background: rgb(36, 102, 117);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  min-height: 340px;
+}
+
+.baja {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.baja h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.3;
+  max-width: 320px;
+}
+
+.baja-price {
+  background: #fff;
+  color: rgb(36, 102, 117);
+  border-radius: 10px;
+  padding: 8px 16px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.baja-price span {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgb(36, 102, 117);
+}
+
+.baja-price h3 {
+  margin: 2px 0 0 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: rgb(36, 102, 117);
+}
+
+.kayaking-item-f h5 {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  margin: 20px 0;
+}
+
+.baja-btn {
+  width: 100%;
+  background: #fff;
+  color: rgb(36, 102, 117);
+  border: none;
+  padding: 14px 0;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.baja-btn:hover {
+  background: #a1e2ef;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* ===== Side-by-side images ===== */
+.kayaking-images-f {
+  flex: 1 1 380px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.kayaking-img {
+  flex: 1;
+  height: 260px;
+  border-radius: 16px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 900px) {
+  .kayaking-images-f {
+    order: 2;
+  }
+  .kayaking-item-f {
+    order: 1;
+  }
+}
+
+@media (max-width: 520px) {
+  .kayaking-images-f {
+    flex-direction: column;
+  }
+  .kayaking-img {
+    width: 100%;
+    height: 180px;
+  }
+}

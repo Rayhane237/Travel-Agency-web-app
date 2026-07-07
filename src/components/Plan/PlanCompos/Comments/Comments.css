@@ -1,0 +1,174 @@
+/* ==========================================================================
+   Comments.css — Phnes Travel
+   --teal:  #1f7a67   eyebrow label, active accents
+   --gold:  #f5a524   star rating color (matches reference's orange stars)
+   ========================================================================== */
+
+:root {
+  --teal: #1f7a67;
+  --gold: #f5a524;
+}
+
+.comments-body {
+  width: 100%;
+  font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+/* The unclassed div carrying the inline background-image style */
+.comments-body > div {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 56px 60px 40px;
+  overflow: hidden;
+}
+
+/* Dark overlay so white text stays legible over the photo */
+.comments-body > div::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 20, 18, 0.55) 0%,
+    rgba(10, 20, 18, 0.35) 45%,
+    rgba(10, 20, 18, 0.6) 100%
+  );
+  pointer-events: none;
+}
+
+/* ---------- Heading ---------- */
+.top-comments {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.top-comments::before {
+  content: "Testimonials";
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  margin-bottom: 8px;
+}
+
+.top-comments h1 {
+  font-family: "Poppins", "Inter", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* ---------- Arrow buttons ---------- */
+.scroll-comments-btn {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 24px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.scroll-comment {
+  pointer-events: auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.scroll-comment:hover {
+  background: rgba(245, 165, 36, 0.85);
+  transform: scale(1.06);
+}
+
+/* ---------- Scroll strip ---------- */
+.comments-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding: 8px 4px 12px;
+}
+
+.comments-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- Individual comment card ---------- */
+.comment {
+  flex: 0 0 auto;
+  width: 300px;
+  scroll-snap-align: center;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
+  padding: 28px 22px;
+}
+
+.comment h1 {
+  font-size: 15px;
+  letter-spacing: 3px;
+  margin: 0 0 14px;
+}
+
+.comment h3 {
+  font-family: "Poppins", "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+
+.comment h5 {
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.7;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .comments-body > div {
+    padding: 44px 20px 32px;
+  }
+
+  .top-comments h1 {
+    font-size: 22px;
+  }
+
+  .comment {
+    width: 250px;
+    padding: 22px 18px;
+  }
+
+  .scroll-comments-btn {
+    padding: 0 10px;
+  }
+}
