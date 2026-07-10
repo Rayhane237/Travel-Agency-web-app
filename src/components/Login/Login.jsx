@@ -113,104 +113,107 @@ const Login = () => {
   }, [token, navigate]);
 
   return (
-    <div className="signup-page">
-       <Nav />
-      <div className="signup-visual">
-       
-        <img src={homeImg} alt="" aria-hidden="true" className="signup-bg" />
-        <div className="signup-visual-overlay" />
-        <div className="signup-brand">
-          <svg viewBox="0 0 220 40" className="brand-path" aria-hidden="true">
-            <path
-              d="M4 30 C 40 4, 150 4, 190 22"
-              fill="none"
-              stroke="#ffffff"
-              strokeWidth="1.4"
-              strokeDasharray="4 6"
-              strokeLinecap="round"
-              className="brand-path-line"
-            />
-            <text x="0" y="0" className="brand-plane" transform="translate(190 22) rotate(-18)">
-              ✈
-            </text>
-          </svg>
-          <span className="brand-name">Phnes. Travels</span>
+    <>
+      <Nav />
+
+      <div className="signup-page">
+        <div className="signup-visual">
+
+          <img src={homeImg} alt="" aria-hidden="true" className="signup-bg" />
+          <div className="signup-visual-overlay" />
+          <div className="signup-brand">
+            <svg viewBox="0 0 220 40" className="brand-path" aria-hidden="true">
+              <path
+                d="M4 30 C 40 4, 150 4, 190 22"
+                fill="none"
+                stroke="#ffffff"
+                strokeWidth="1.4"
+                strokeDasharray="4 6"
+                strokeLinecap="round"
+                className="brand-path-line"
+              />
+              <text x="0" y="0" className="brand-plane" transform="translate(190 22) rotate(-18)">
+                ✈
+              </text>
+            </svg>
+            <span className="brand-name">Phnes. Travels</span>
+          </div>
         </div>
-      </div>
 
-      <div className="signup-panel">
-        <form onSubmit={onSubmitLogic} className="signup-card">
-          <h1 className="signup-title">Login</h1>
-          <p className="signup-subtitle">
-            Login to access your Phnes.Travels account
-          </p>
+        <div className="signup-panel">
+          <form onSubmit={onSubmitLogic} className="signup-card">
+            <h1 className="signup-title">Login</h1>
+            <p className="signup-subtitle">
+              Login to access your Phnes.Travels account
+            </p>
 
-          <Field
-            label="Email"
-            id="email"
-            type="email"
-            placeholder="Enter your email"
-            value={data.email}
-            onChange={(e) => {
-              const value = e.target.value;
-              setData({ ...data, email: value });
-              if (value !== '') setErrData({ ...errData, errEmail: '' });
-            }}
-            error={errData.errEmail}
-          />
+            <Field
+              label="Email"
+              id="email"
+              type="email"
+              placeholder="Enter your email"
+              value={data.email}
+              onChange={(e) => {
+                const value = e.target.value;
+                setData({ ...data, email: value });
+                if (value !== '') setErrData({ ...errData, errEmail: '' });
+              }}
+              error={errData.errEmail}
+            />
 
-          <Field
-            label="Password"
-            id="password"
-            type={showPass ? 'text' : 'password'}
-            placeholder="Enter your password"
-            value={data.passWord}
-            onChange={(e) => {
-              const value = e.target.value;
-              setData({ ...data, passWord: value });
-              if (value !== '') setErrData({ ...errData, errPassWord: '' });
-            }}
-            error={errData.errPassWord}
-            trailing={
-              <button
-                type="button"
-                className="signup-eye"
-                aria-label={showPass ? 'Hide password' : 'Show password'}
-                onClick={() => setShowPass((v) => !v)}
-              >
-                <EyeIcon hidden={showPass} />
+            <Field
+              label="Password"
+              id="password"
+              type={showPass ? 'text' : 'password'}
+              placeholder="Enter your password"
+              value={data.passWord}
+              onChange={(e) => {
+                const value = e.target.value;
+                setData({ ...data, passWord: value });
+                if (value !== '') setErrData({ ...errData, errPassWord: '' });
+              }}
+              error={errData.errPassWord}
+              trailing={
+                <button
+                  type="button"
+                  className="signup-eye"
+                  aria-label={showPass ? 'Hide password' : 'Show password'}
+                  onClick={() => setShowPass((v) => !v)}
+                >
+                  <EyeIcon hidden={showPass} />
+                </button>
+              }
+            />
+
+            <button type="submit" className="signup-btn">
+              Login
+            </button>
+
+            <p className="signup-footer">
+              Do not have an account? <Link to="/Signup">Signup</Link>
+            </p>
+
+            <div className="signup-divider">
+              <span>Or Login with</span>
+            </div>
+
+            <div className="signup-social">
+              <button type="button" onClick={handleSocial('Facebook')} aria-label="Login with Facebook">
+                <FacebookIcon />
               </button>
-            }
-          />
+              <button type="button" onClick={handleSocial('Google')} aria-label="Login with Google">
+                <GoogleIcon />
+              </button>
+              <button type="button" onClick={handleSocial('Apple')} aria-label="Login with Apple">
+                <AppleIcon />
+              </button>
+            </div>
+          </form>
+        </div>
 
-          <button type="submit" className="signup-btn">
-            Login
-          </button>
-
-          <p className="signup-footer">
-            Do not have an account? <Link to="/Signup">Signup</Link>
-          </p>
-
-          <div className="signup-divider">
-            <span>Or Login with</span>
-          </div>
-
-          <div className="signup-social">
-            <button type="button" onClick={handleSocial('Facebook')} aria-label="Login with Facebook">
-              <FacebookIcon />
-            </button>
-            <button type="button" onClick={handleSocial('Google')} aria-label="Login with Google">
-              <GoogleIcon />
-            </button>
-            <button type="button" onClick={handleSocial('Apple')} aria-label="Login with Apple">
-              <AppleIcon />
-            </button>
-          </div>
-        </form>
+        <ToastContainer />
       </div>
-
-      <ToastContainer />
-    </div>
+    </>
   );
 };
 

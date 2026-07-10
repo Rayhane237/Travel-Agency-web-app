@@ -156,155 +156,158 @@ const SignUp = () => {
   };
 
   return (
-    <div className="signup-page">
+    <>
       <Nav />
-      <div className="signup-visual">
-      
-      <img src={homeImg} alt="" aria-hidden="true" className="signup-bg" />
-        <div className="signup-visual-overlay" />
-        <div className="signup-brand">
-          <svg viewBox="0 0 220 40" className="brand-path" aria-hidden="true">
-            <path
-              d="M4 30 C 40 4, 150 4, 190 22"
-              fill="none"
-              stroke="#ffffff"
-              strokeWidth="1.4"
-              strokeDasharray="4 6"
-              strokeLinecap="round"
-              className="brand-path-line"
-            />
-            <text x="0" y="0" className="brand-plane" transform="translate(190 22) rotate(-18)">
-              ✈
-            </text>
-          </svg>
-          <span className="brand-name">Phnes. Travels</span>
+
+      <div className="signup-page">
+        <div className="signup-visual">
+
+          <img src={homeImg} alt="" aria-hidden="true" className="signup-bg" />
+          <div className="signup-visual-overlay" />
+          <div className="signup-brand">
+            <svg viewBox="0 0 220 40" className="brand-path" aria-hidden="true">
+              <path
+                d="M4 30 C 40 4, 150 4, 190 22"
+                fill="none"
+                stroke="#ffffff"
+                strokeWidth="1.4"
+                strokeDasharray="4 6"
+                strokeLinecap="round"
+                className="brand-path-line"
+              />
+              <text x="0" y="0" className="brand-plane" transform="translate(190 22) rotate(-18)">
+                ✈
+              </text>
+            </svg>
+            <span className="brand-name">Phnes. Travels</span>
+          </div>
         </div>
-      </div>
 
-      <div className="signup-panel">
-        <form onSubmit={onClickLogic} className="signup-card">
-          <h1 className="signup-title">Sign up</h1>
-          <p className="signup-subtitle">
-            Create your account to unlock personalized travel experiences.
-          </p>
+        <div className="signup-panel">
+          <form onSubmit={onClickLogic} className="signup-card">
+            <h1 className="signup-title">Sign up</h1>
+            <p className="signup-subtitle">
+              Create your account to unlock personalized travel experiences.
+            </p>
 
-          <Field
-            label="Full Name"
-            id="name"
-            type="text"
-            placeholder="Ann Pine"
-            value={data.name}
-            onChange={updateField("name", "errName")}
-            error={errData.errName}
-          />
-
-          <div className="signup-row">
             <Field
-              label="Email"
-              id="email"
-              type="email"
-              placeholder="ann.pine@gmail.com"
-              value={data.email}
-              onChange={updateField("email", "errEmail")}
-              error={errData.errEmail}
+              label="Full Name"
+              id="name"
+              type="text"
+              placeholder="Ann Pine"
+              value={data.name}
+              onChange={updateField("name", "errName")}
+              error={errData.errName}
             />
+
+            <div className="signup-row">
+              <Field
+                label="Email"
+                id="email"
+                type="email"
+                placeholder="ann.pine@gmail.com"
+                value={data.email}
+                onChange={updateField("email", "errEmail")}
+                error={errData.errEmail}
+              />
+              <Field
+                label="Phone Number"
+                id="number"
+                type="number"
+                placeholder="233 034 3456 578"
+                value={data.number}
+                onChange={updateField("number", "errNumber")}
+                error={errData.errNumber}
+              />
+            </div>
+
             <Field
-              label="Phone Number"
-              id="number"
-              type="number"
-              placeholder="233 034 3456 578"
-              value={data.number}
-              onChange={updateField("number", "errNumber")}
-              error={errData.errNumber}
+              label="Password"
+              id="password"
+              type={showPass ? "text" : "password"}
+              placeholder="••••••••••••"
+              value={data.passWord}
+              onChange={updateField("passWord", "errPassWord")}
+              error={errData.errPassWord}
+              trailing={
+                <button
+                  type="button"
+                  className="signup-eye"
+                  aria-label={showPass ? "Hide password" : "Show password"}
+                  onClick={() => setShowPass((v) => !v)}
+                >
+                  <EyeIcon hidden={showPass} />
+                </button>
+              }
             />
-          </div>
 
-          <Field
-            label="Password"
-            id="password"
-            type={showPass ? "text" : "password"}
-            placeholder="••••••••••••"
-            value={data.passWord}
-            onChange={updateField("passWord", "errPassWord")}
-            error={errData.errPassWord}
-            trailing={
-              <button
-                type="button"
-                className="signup-eye"
-                aria-label={showPass ? "Hide password" : "Show password"}
-                onClick={() => setShowPass((v) => !v)}
-              >
-                <EyeIcon hidden={showPass} />
-              </button>
-            }
-          />
-
-          <Field
-            label="Confirm Password"
-            id="confirmPassword"
-            type={showConfirmPass ? "text" : "password"}
-            placeholder="••••••••••••"
-            value={data.confirmPassWord}
-            onChange={updateField("confirmPassWord", "errConfirmPassWord")}
-            error={errData.errConfirmPassWord}
-            trailing={
-              <button
-                type="button"
-                className="signup-eye"
-                aria-label={showConfirmPass ? "Hide password" : "Show password"}
-                onClick={() => setShowConfirmPass((v) => !v)}
-              >
-                <EyeIcon hidden={showConfirmPass} />
-              </button>
-            }
-          />
-
-          <label className="signup-terms">
-            <input
-              type="checkbox"
-              checked={agreed}
-              onChange={(e) => {
-                setAgreed(e.target.checked);
-                if (e.target.checked) {
-                  setErrData((prev) => ({ ...prev, errTerms: "" }));
-                }
-              }}
+            <Field
+              label="Confirm Password"
+              id="confirmPassword"
+              type={showConfirmPass ? "text" : "password"}
+              placeholder="••••••••••••"
+              value={data.confirmPassWord}
+              onChange={updateField("confirmPassWord", "errConfirmPassWord")}
+              error={errData.errConfirmPassWord}
+              trailing={
+                <button
+                  type="button"
+                  className="signup-eye"
+                  aria-label={showConfirmPass ? "Hide password" : "Show password"}
+                  onClick={() => setShowConfirmPass((v) => !v)}
+                >
+                  <EyeIcon hidden={showConfirmPass} />
+                </button>
+              }
             />
-            <span>
-              I agree to all the <Link to="/terms">Terms</Link> and{" "}
-              <Link to="/privacy">Privacy Policies</Link>
-            </span>
-          </label>
-          {errData.errTerms && <p className="signup-error">{errData.errTerms}</p>}
 
-          <button type="submit" className="signup-btn">
-            Create account
-          </button>
+            <label className="signup-terms">
+              <input
+                type="checkbox"
+                checked={agreed}
+                onChange={(e) => {
+                  setAgreed(e.target.checked);
+                  if (e.target.checked) {
+                    setErrData((prev) => ({ ...prev, errTerms: "" }));
+                  }
+                }}
+              />
+              <span>
+                I agree to all the <Link to="/terms">Terms</Link> and{" "}
+                <Link to="/privacy">Privacy Policies</Link>
+              </span>
+            </label>
+            {errData.errTerms && <p className="signup-error">{errData.errTerms}</p>}
 
-          <p className="signup-footer">
-            Already have an account? <Link to="/Login">Login</Link>
-          </p>
-
-          <div className="signup-divider">
-            <span>Or Sign up with</span>
-          </div>
-
-          <div className="signup-social">
-            <button type="button" onClick={handleSocial("Facebook")} aria-label="Sign up with Facebook">
-              <FacebookIcon />
+            <button type="submit" className="signup-btn">
+              Create account
             </button>
-            <button type="button" onClick={handleSocial("Google")} aria-label="Sign up with Google">
-              <GoogleIcon />
-            </button>
-            <button type="button" onClick={handleSocial("Apple")} aria-label="Sign up with Apple">
-              <AppleIcon />
-            </button>
-          </div>
-        </form>
+
+            <p className="signup-footer">
+              Already have an account? <Link to="/Login">Login</Link>
+            </p>
+
+            <div className="signup-divider">
+              <span>Or Sign up with</span>
+            </div>
+
+            <div className="signup-social">
+              <button type="button" onClick={handleSocial("Facebook")} aria-label="Sign up with Facebook">
+                <FacebookIcon />
+              </button>
+              <button type="button" onClick={handleSocial("Google")} aria-label="Sign up with Google">
+                <GoogleIcon />
+              </button>
+              <button type="button" onClick={handleSocial("Apple")} aria-label="Sign up with Apple">
+                <AppleIcon />
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <ToastContainer />
       </div>
-
-      <ToastContainer />
-    </div>
+    </>
   );
 };
 

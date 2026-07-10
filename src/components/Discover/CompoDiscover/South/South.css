@@ -1,0 +1,78 @@
+
+/*---compo2 :south island content --*/
+.body  {
+    padding:2rem;
+}
+
+.body h2 {
+    color: rgb(35, 106, 118);
+}
+.south-text h5 {
+    text-align: justify;
+    margin-top: 2rem;
+}
+.destination-text h3 {
+    color: rgb(34, 71, 75);
+    position: relative;
+   
+}
+
+
+.backItem {
+    background-color: rgba(0, 255, 255, 0);
+    position: relative;
+    margin-left: 3%;
+}
+
+
+.flex-body {
+ padding-top: -5rem;
+  display: grid;
+  grid-template-columns: 2.3fr 1fr;
+  align-items: start;
+  gap: 10px;
+}
+   
+.flex h3,h5 {
+    color: rgb(9, 39, 39);
+}
+
+#body1 {
+    height: 55vh;
+} 
+
+.map {
+    background-color: rgba(255, 0, 242, 0);
+    position: relative;
+    margin-left: 5%;
+    
+}
+
+@media(max-width:850px){
+    .map {
+        display: none;
+    }
+    .item {
+        width: 90%;
+    }
+    #body1 {
+        width: 110vw;
+
+    }
+   
+
+    .destination-text {
+        display: none;
+    }
+    .body {
+        padding: 0.3rem;
+    }
+
+}
+
+@media(max-width:550px){
+   
+    .item {
+       display: none;
+    }
+  }

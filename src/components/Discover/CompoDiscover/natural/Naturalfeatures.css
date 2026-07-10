@@ -1,0 +1,198 @@
+
+/*--------compo3 :Natural geographic features --*/
+
+.body-n{
+    margin-top: 0rem;
+    padding: 2rem;
+}
+
+.body-n h2 {
+    color: rgb(35, 106, 118);
+}
+
+ .flex h5 {
+    margin-top: 10rem;
+ }
+.flex-pics {
+    padding: 2rem;
+    background-color: rgba(250, 235, 215, 0.043);
+    display: flex;
+    margin-top: 2rem;
+    margin-left:8% ;
+    width: 90%;
+}
+
+.grid2 {
+    margin-top: clamp(0.5rem,1.2rem,1rem);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem,2rem,1.5rem);
+}
+
+.flex-body-pics1 {
+    display: none;
+}
+
+.natural-pics {
+    display: flex;
+    gap: 1rem;
+    margin-left: 3%;
+}
+
+ .grid3 {
+    display: none;
+} 
+
+/* location pin badge */
+.location-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: rgb(180, 60, 60);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin: 0.6rem 0;
+}
+
+.location-tag.on-dark {
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0.3rem 0;
+}
+
+/* "See all" header row */
+.other-destinations-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.see-all-btn {
+    border: 1px solid rgb(21, 86, 98);
+    background: transparent;
+    color: rgb(21, 86, 98);
+    border-radius: 20px;
+    padding: 0.35rem 1rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
+.see-all-btn:hover {
+    background: rgb(21, 86, 98);
+    color: white;
+}
+
+.back {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: clamp(1rem,1rem,3rem);
+    overflow: hidden;
+}
+
+/* dark gradient so white text stays readable over any photo */
+.back::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 13px;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.05) 65%);
+    pointer-events: none;
+}
+
+.back h2,
+.back .location-tag,
+.back-btn {
+    position: relative;
+    z-index: 1;
+}
+
+.back h2 {
+    color: aliceblue;
+    font-size: 1rem;
+    margin-bottom: 0.1rem;
+}
+
+.back-btn {
+    align-self: flex-start;
+    width: 140px;
+    height: 34px;
+    margin-top: 0.4rem;
+    border-radius: 20px;
+    border: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: white;
+    background-color: rgb(21, 86, 98);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
+.back-btn:hover {
+   background-color: rgb(28, 110, 124);
+   color: white;
+} 
+
+
+@media(max-width:850px){
+    .flex-body {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 1rem;
+    }
+    
+    
+    
+    .grid1 {
+        margin-left: 5%;
+        width: 90vw;
+
+    }
+    .natural-pics {
+      justify-content: center;
+      align-items: center;
+}
+
+    .grid2 {
+        display: none;
+        margin-top: 0;
+        height: 0;
+    }
+
+    
+.grid3 {
+  background-color: rgba(127, 255, 212, 0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 2rem;
+  padding-top: 0rem;
+  min-height: 40vh;
+  width: 100%;
+}
+
+} 
+
+@media(max-width:370px){
+    .back-btn {
+        margin-top: 0.3rem;
+    }
+
+    .body-n {
+        margin-top: 20vh;
+        padding: 0.6rem;
+    }
+
+    .natural-pics {
+        flex-direction: column;
+        margin-left: -1.2rem;
+        
+    }
+}
+
+
