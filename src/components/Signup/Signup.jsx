@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./SignUp.css";
 import { useNavigate, Link } from "react-router-dom";
-import axios from "axios";
+import api, { setAccessToken } from "../../API/axios";
 import { ToastContainer, toast } from "react-toastify";
 import homeImg from "../../assets/home.jpg";
 import Nav from "../Nav/Nav";
@@ -48,19 +48,19 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const [data, setData] = useState({
-    name: "",
-    number: "",
+    fullName: "",
+    phoneNumber: "",
     email: "",
-    passWord: "",
-    confirmPassWord: "",
+    password: "",
+    confirmPassword: "",
   });
 
   const [errData, setErrData] = useState({
-    errName: "",
-    errNumber: "",
+    errFullName: "",
+    errPhoneNumber: "",
     errEmail: "",
-    errPassWord: "",
-    errConfirmPassWord: "",
+    errPassword: "",
+    errConfirmPassword: "",
     errTerms: "",
   });
 
@@ -84,36 +84,36 @@ const SignUp = () => {
     event.preventDefault();
 
     let userError = {
-      errName: "",
-      errNumber: "",
+      errFullName: "",
+      errPhoneNumber: "",
       errEmail: "",
-      errPassWord: "",
-      errConfirmPassWord: "",
+      errPassword: "",
+      errConfirmPassword: "",
       errTerms: "",
     };
     let isValid = true;
 
-    if (!data.name) {
-      userError.errName = "You must fill this input";
+    if (!data.fullName) {
+      userError.errFullName = "You must fill this input";
       isValid = false;
     }
-    if (!data.number) {
-      userError.errNumber = "You must fill this input";
+    if (!data.phoneNumber) {
+      userError.errPhoneNumber = "You must fill this input";
       isValid = false;
     }
     if (!data.email) {
       userError.errEmail = "You must fill this input";
       isValid = false;
     }
-    if (!data.passWord) {
-      userError.errPassWord = "You must fill this input";
+    if (!data.password) {
+      userError.errPassword = "You must fill this input";
       isValid = false;
     }
-    if (!data.confirmPassWord) {
-      userError.errConfirmPassWord = "Please confirm your password";
+    if (!data.confirmPassword) {
+      userError.errConfirmPassword = "Please confirm your password";
       isValid = false;
-    } else if (data.passWord && data.confirmPassWord !== data.passWord) {
-      userError.errConfirmPassWord = "Passwords do not match";
+    } else if (data.password && data.confirmPassword !== data.password) {
+      userError.errConfirmPassword = "Passwords do not match";
       isValid = false;
     }
     if (!agreed) {
@@ -129,25 +129,23 @@ const SignUp = () => {
     }
 
     const clientData = {
-      name: data.name,
-      number: data.number,
+      fullName: data.fullName,
+      phoneNumber: data.phoneNumber,
       email: data.email,
-      password: data.passWord,
+      password: data.password,
     };
 
     try {
-      const res = await axios.post(
-        `${import.meta.env.VITE_SERVER_HOST}/register`,
-        clientData
-      );
+      const res = await api.post("/register", clientData);
 
-      if (res.status === 201 || res.status === 304) {
-        toast.success("Welcome! Your account is ready.", {
+      if (res.status === 201) {
+        setAccessToken(res.data.accessToken);
+        toast.success(res.data.message || "Welcome! Your account is ready.", {
           position: "top-right",
           autoClose: 3000,
           theme: "colored",
         });
-        setTimeout(() => navigate("/Login"), 1000);
+        setTimeout(() => navigate("/"), 1000);
       }
     } catch (error) {
       const msg = error.response?.data?.message || "Something went wrong";
@@ -192,12 +190,12 @@ const SignUp = () => {
 
             <Field
               label="Full Name"
-              id="name"
+              id="fullName"
               type="text"
               placeholder="Ann Pine"
-              value={data.name}
-              onChange={updateField("name", "errName")}
-              error={errData.errName}
+              value={data.fullName}
+              onChange={updateField("fullName", "errFullName")}
+              error={errData.errFullName}
             />
 
             <div className="signup-row">
@@ -212,12 +210,12 @@ const SignUp = () => {
               />
               <Field
                 label="Phone Number"
-                id="number"
-                type="number"
+                id="phoneNumber"
+                type="text"
                 placeholder="233 034 3456 578"
-                value={data.number}
-                onChange={updateField("number", "errNumber")}
-                error={errData.errNumber}
+                value={data.phoneNumber}
+                onChange={updateField("phoneNumber", "errPhoneNumber")}
+                error={errData.errPhoneNumber}
               />
             </div>
 
@@ -226,9 +224,9 @@ const SignUp = () => {
               id="password"
               type={showPass ? "text" : "password"}
               placeholder="••••••••••••"
-              value={data.passWord}
-              onChange={updateField("passWord", "errPassWord")}
-              error={errData.errPassWord}
+              value={data.password}
+              onChange={updateField("password", "errPassword")}
+              error={errData.errPassword}
               trailing={
                 <button
                   type="button"
@@ -246,9 +244,9 @@ const SignUp = () => {
               id="confirmPassword"
               type={showConfirmPass ? "text" : "password"}
               placeholder="••••••••••••"
-              value={data.confirmPassWord}
-              onChange={updateField("confirmPassWord", "errConfirmPassWord")}
-              error={errData.errConfirmPassWord}
+              value={data.confirmPassword}
+              onChange={updateField("confirmPassword", "errConfirmPassword")}
+              error={errData.errConfirmPassword}
               trailing={
                 <button
                   type="button"

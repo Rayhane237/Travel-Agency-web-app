@@ -1,10 +1,15 @@
 import { useEffect, useState } from 'react';
 import './Login.css';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import homeImg from "../../assets/home.jpg";
 import Nav from '../Nav/Nav';
+
+import api, { setAccessToken, trySessionRefresh } from "../../API/axios";
+
+// Single source of truth for "where does a logged-in user land" —
+// change it here once instead of hunting two different navigate() calls.
+const LOGGED_IN_HOME = '/';
 
 const EyeIcon = ({ hidden }) => (
   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.7">
@@ -46,19 +51,19 @@ const AppleIcon = () => (
 
 const Login = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
 
   const [data, setData] = useState({
     email: '',
-    passWord: ''
+    password: ''
   });
 
   const [errData, setErrData] = useState({
     errEmail: '',
-    errPassWord: ''
+    errPassword: ''
   });
 
   const [showPass, setShowPass] = useState(false);
+  const [checkingSession, setCheckingSession] = useState(true);
 
   const handleSocial = (provider) => () => {
     toast.info(`${provider} login is coming soon`);
@@ -69,7 +74,7 @@ const Login = () => {
 
     let userError = {
       errEmail: '',
-      errPassWord: ''
+      errPassword: ''
     };
     let isValid = true;
 
@@ -77,8 +82,8 @@ const Login = () => {
       userError.errEmail = 'You must fill this input';
       isValid = false;
     }
-    if (!data.passWord) {
-      userError.errPassWord = 'You must fill this input';
+    if (!data.password) {
+      userError.errPassword = 'You must fill this input';
       isValid = false;
     }
 
@@ -91,14 +96,14 @@ const Login = () => {
 
     const clientData = {
       email: data.email,
-      password: data.passWord
+      password: data.password
     };
 
     try {
-      const res = await axios.post(`${import.meta.env.VITE_SERVER_HOST}/login`, clientData);
+      const res = await api.post("/login", clientData);
       if (res.status === 200) {
-        localStorage.setItem('token', res.data.token);
-        navigate('/Plan');
+        setAccessToken(res.data.accessToken);
+        navigate(LOGGED_IN_HOME);
       }
     } catch (error) {
       const message = error.response?.data?.message || error.message || 'Login failed';
@@ -106,11 +111,25 @@ const Login = () => {
     }
   };
 
+  // On mount: try a silent refresh via the httpOnly cookie. Uses the
+  // shared trySessionRefresh() (not a raw api.post) so this can't race
+  // Nav.jsx's own session check when both mount on this page at once
+  // (Login.jsx renders <Nav /> below).
   useEffect(() => {
-    if (token) {
-      navigate('/Plan');
-    }
-  }, [token, navigate]);
+    trySessionRefresh()
+      .then((res) => {
+        setAccessToken(res.data.accessToken);
+        navigate(LOGGED_IN_HOME);
+      })
+      .catch(() => setCheckingSession(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Avoid flashing the login form for a split second before the session
+  // check above resolves.
+  if (checkingSession) {
+    return null;
+  }
 
   return (
     <>
@@ -166,13 +185,13 @@ const Login = () => {
               id="password"
               type={showPass ? 'text' : 'password'}
               placeholder="Enter your password"
-              value={data.passWord}
+              value={data.password}
               onChange={(e) => {
                 const value = e.target.value;
-                setData({ ...data, passWord: value });
-                if (value !== '') setErrData({ ...errData, errPassWord: '' });
+                setData({ ...data, password: value });
+                if (value !== '') setErrData({ ...errData, errPassword: '' });
               }}
-              error={errData.errPassWord}
+              error={errData.errPassword}
               trailing={
                 <button
                   type="button"

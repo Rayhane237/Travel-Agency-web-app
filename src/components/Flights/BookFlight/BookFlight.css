@@ -141,13 +141,13 @@
 }
 
 /* ===== Floating booking card =====
-   Centered via the parent's flexbox (align-items: center) rather than
-   margin:auto, so it stays centered no matter what width the ancestor
-   elements end up being. */
+   Centered with margin: auto on the element itself, so it stays
+   centered regardless of whether an ancestor happens to apply
+   flexbox centering (e.g. .booking-hero) or not. */
 .book-flight {
   width: 100%;
   max-width: 640px;
-  margin-top: -100px;
+  margin: -100px auto 0;
   padding: 0 20px;
   position: relative;
   z-index: 10;

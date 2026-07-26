@@ -1,34 +1,39 @@
 import React, { useState } from 'react';
-import "./BookFlight.css"
-import { useNavigate } from "react-router-dom";
-import api from "../../../API/axios"
+
+import { useNavigate, useLocation } from "react-router-dom";
+import api from "../../../../API/axios"
 import { ToastContainer, toast } from "react-toastify";
-import Footer from "../../Footer/Footer"
-import Nav from "../../nav/nav"
+import Footer from "../../../Footer/Footer"
+import Nav from "../../../nav/nav"
 
-
+// Same pattern as flight Payloads.jsx: drive inputs from one array.
 const fields = [
-  { name: "from", label: "From", type: "text", placeholder: "Departure city" },
-  { name: "to", label: "To", type: "text", placeholder: "Destination city" },
-  { name: "date", label: "Date", type: "date", placeholder: "" },
-  { name: "passenger", label: "Passenger", type: "text", placeholder: "Passenger name" },
+  { name: "hotelName", label: "Hotel", type: "text", placeholder: "Hotel name" },
+  { name: "checkIn", label: "Check-in", type: "date", placeholder: "" },
+  { name: "checkOut", label: "Check-out", type: "date", placeholder: "" },
+  { name: "guestName", label: "Guest", type: "text", placeholder: "Guest name" },
 ];
 
-const Payloads = () => {
+const HotelPayloads = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // If the person arrived here from the Hotels dashboard by clicking
+  // "Book hotel" on a specific card, pre-fill the hotel name from it.
+  const preselectedHotel = location.state?.hotel?.name || "";
 
   const [formData, setFormData] = useState({
-    from: "",
-    to: "",
-    date: "",
-    passenger: ""
+    hotelName: preselectedHotel,
+    checkIn: "",
+    checkOut: "",
+    guestName: ""
   });
 
   const [errData, setErrData] = useState({
-    from: "",
-    to: "",
-    date: "",
-    passenger: ""
+    hotelName: "",
+    checkIn: "",
+    checkOut: "",
+    guestName: ""
   });
 
   const [submitting, setSubmitting] = useState(false);
@@ -43,7 +48,7 @@ const Payloads = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const errors = { from: "", to: "", date: "", passenger: "" };
+    const errors = { hotelName: "", checkIn: "", checkOut: "", guestName: "" };
     let isValid = true;
 
     fields.forEach(({ name }) => {
@@ -52,6 +57,11 @@ const Payloads = () => {
         isValid = false;
       }
     });
+
+    if (formData.checkIn && formData.checkOut && formData.checkOut <= formData.checkIn) {
+      errors.checkOut = "Check-out must be after check-in";
+      isValid = false;
+    }
 
     setErrData(errors);
 
@@ -63,17 +73,17 @@ const Payloads = () => {
     setSubmitting(true);
 
     try {
-      const res = await api.post("/bookFlight", { ...formData });
+      const res = await api.post("/bookHotel", { ...formData });
 
-      if (res.status === 201 || res.status === 304) {
-        toast.success("Flight booked successfully!", {
+      if (res.status === 201) {
+        toast.success("Hotel booked successfully!", {
           position: "top-right",
           autoClose: 3000,
           theme: "colored"
         });
 
         setTimeout(() => {
-          navigate("/Flights");
+          navigate("/Hotels");
         }, 1000);
       }
     } catch (error) {
@@ -93,14 +103,14 @@ const Payloads = () => {
       <div className='booking-hero'>
         <div className='text-home'>
           <h3>Booking</h3>
-          <h1>Let's get you there</h1>
-          <p>Fill in your trip details below and we'll take care of the rest.</p>
+          <h1>Let's find your stay</h1>
+          <p>Fill in your stay details below and we'll take care of the rest.</p>
         </div>
 
         <div className='book-flight'>
           <form className='flight-form' onSubmit={handleSubmit} noValidate>
             <header className='flight-header'>
-              <h2>Plan your journey with ease and confidence!</h2>
+              <h2>Plan your stay with ease and confidence!</h2>
             </header>
 
             {fields.map(({ name, label, type, placeholder }) => (
@@ -134,4 +144,4 @@ const Payloads = () => {
   );
 };
 
-export default Payloads;
+export default HotelPayloads;

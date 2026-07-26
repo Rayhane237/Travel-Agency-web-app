@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { IoIosMenu } from 'react-icons/io'
 import { RiCloseLargeFill } from 'react-icons/ri'
+import api, { getAccessToken, setAccessToken, trySessionRefresh } from '../../API/axios'
 import "./nav.css"
 
 const links = [
@@ -9,13 +10,15 @@ const links = [
   { label: "Flights", path: "/Flights" },
   { label: "Hotels", path: "/Hotels" },
   { label: "Discover", path: "/Discover" },
-  { label: "About Us", path: "/About" },
+  { label: "About Us", path: "/AboutUs" },
   { label: "Contact", path: "/Contact" },
+
 ]
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [navHeight, setNavHeight] = useState(0)
+  const [isLoggedIn, setIsLoggedIn] = useState(!!getAccessToken())
   const navRef = useRef(null)
 
   const toggleMenu = () => setMenuOpen((v) => !v)
@@ -27,6 +30,19 @@ const NavBar = () => {
   const go = (path) => {
     navigate(path)
     closeMenu()
+  }
+
+  const handleLogout = async () => {
+    try {
+      await api.post("/logout")
+    } catch (err) {
+      // even if the request fails (e.g. server unreachable), still clear client-side state
+    } finally {
+      setAccessToken(null)
+      setIsLoggedIn(false)
+      closeMenu()
+      navigate("/Login")
+    }
   }
 
   // Measure the actual rendered height of the fixed nav so the spacer
@@ -54,6 +70,25 @@ const NavBar = () => {
       document.removeEventListener('keydown', onKeyDown)
     }
   }, [menuOpen])
+
+  // On mount, verify whether a session actually exists (cookie-based),
+  // independent of whatever's currently in the in-memory access token —
+  // covers page reloads, since the in-memory token resets on reload but
+  // the httpOnly refresh cookie doesn't. Uses trySessionRefresh() (not a
+  // raw api.post) so this can't race against Login.jsx's own check when
+  // both mount on the same page at the same time.
+  useEffect(() => {
+    if (getAccessToken()) return
+
+    trySessionRefresh()
+      .then((res) => {
+        setAccessToken(res.data.accessToken)
+        setIsLoggedIn(true)
+      })
+      .catch(() => {
+        setIsLoggedIn(false)
+      })
+  }, [])
 
   return (
     <>
@@ -100,8 +135,14 @@ const NavBar = () => {
             ))}
 
             <div className='navbar-actions'>
-              <button className='btn-login' onClick={() => go("/Login")}>Login</button>
-              <button className='btn-signup' onClick={() => go("/Signup")}>Sign up</button>
+              {isLoggedIn ? (
+                <button className='btn-login' onClick={handleLogout}>Logout</button>
+              ) : (
+                <>
+                  <button className='btn-login' onClick={() => go("/Login")}>Login</button>
+                  <button className='btn-signup' onClick={() => go("/Signup")}>Sign up</button>
+                </>
+              )}
             </div>
           </div>
 

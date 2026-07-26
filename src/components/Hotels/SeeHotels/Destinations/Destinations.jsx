@@ -26,8 +26,8 @@ const destinations = [
 
 const Destinations = () => {
   const navigate = useNavigate()
-  const navBookFlight = () => {
-    navigate("/BookFlight")
+  const navBookHotel = () => {
+    navigate("/BookHotel")
   }
 
   return (
@@ -53,7 +53,7 @@ const Destinations = () => {
                 <p className='dh-tagline'>{item.tagline}</p>
               </div>
             </div>
-            <button onClick={navBookFlight} className='dh-book-btn'>Book hotel</button>
+            <button onClick={navBookHotel} className='dh-book-btn'>Book hotel</button>
           </div>
         ))}
       </div>

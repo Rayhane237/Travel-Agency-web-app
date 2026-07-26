@@ -1,0 +1,265 @@
+:root {
+  --teal-deep: #357a6e;
+  --teal-mid: rgb(36, 102, 117);
+  --muted: rgba(198, 199, 199, 1);
+  --error: #e04b4b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ===== Hero wrapper — home.jpg as full background, same pattern as .booking-hero ===== */
+.contact-hero {
+  position: relative;
+  min-height: 480px;
+  background-image:
+    linear-gradient(rgba(10, 30, 30, 0.5), rgba(10, 30, 30, 0.65)),
+    var(--bg-image, none);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 24px 24px 140px;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ===== Nav ===== */
+.contact-nav {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 8px 0;
+}
+
+.contact-brand {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  font-style: italic;
+}
+
+.contact-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.contact-nav-link {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 6px 4px;
+  transition: color 0.2s ease;
+}
+
+.contact-nav-link:hover {
+  background: #ffffff97;
+  border-radius:2rem;
+  color: #e05a2b; 
+}
+
+.contact-nav-link.active {
+  color: #e05a2b;
+  font-weight: 600;
+}
+
+/* ===== Hero text ===== */
+.contact-text-home {
+  max-width: 560px;
+  margin: 64px auto 0;
+  text-align: center;
+  color: #fff;
+}
+
+.contact-text-home h3 {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+
+.contact-text-home h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.contact-text-home p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+  margin: 0;
+}
+
+/* ===== Floating solid white card on top of the image, like .book-flight/.flight-form ===== */
+.contact-card {
+  width: 100%;
+  max-width: 960px;
+  margin-top: -100px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.contact-body {
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.contact-form-side {
+  flex: 1.2;
+  min-width: 300px;
+  padding: 40px;
+}
+
+.contact-form-side form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-field input,
+.contact-field textarea {
+  background: #f2f4f3;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-size: 0.9rem;
+  color: #333;
+  outline: none;
+  font-family: inherit;
+  resize: none;
+  transition: border-color 0.2s ease;
+}
+
+.contact-field input::placeholder,
+.contact-field textarea::placeholder {
+  color: #9aa0a0;
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+  border-color: var(--teal-deep);
+}
+
+.input-error {
+  border-color: var(--error) !important;
+}
+
+.contact-error {
+  color: var(--error);
+  font-size: 0.78rem;
+  margin-top: 4px;
+}
+
+.contact-submit-btn {
+  background: var(--teal-deep);
+  color: #fff;
+  border: none;
+  padding: 14px 0;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.contact-submit-btn:hover:not(:disabled) {
+  background: #2c6459;
+  transform: translateY(-1px);
+}
+
+.contact-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ===== Info side ===== */
+.contact-info-side {
+  flex: 1;
+  min-width: 280px;
+  background: var(--teal-deep);
+  padding: 40px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-illustration {
+  width: 100%;
+  max-width: 260px;
+  margin-bottom: 20px;
+}
+
+.contact-info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.contact-info-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+
+.contact-icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  flex-shrink: 0;
+  font-size: 0.85rem;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 700px) {
+  .contact-body {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-hero {
+    padding: 20px 16px 160px;
+  }
+
+  .contact-text-home {
+    margin-top: 56px;
+  }
+
+  .contact-text-home h1 {
+    font-size: 26px;
+  }
+
+  .contact-card {
+    margin-top: -120px;
+  }
+}

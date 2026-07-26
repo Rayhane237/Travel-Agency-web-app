@@ -5,8 +5,8 @@ import './Kay.css'
 
 const Kayaking = () => {
         const navigate = useNavigate()
-         const navBookFlight =()=>{
-          navigate("/BookFlight")
+         const navBookHotel =()=>{
+          navigate("/BookHotel")
          }
              
           
@@ -25,7 +25,7 @@ const Kayaking = () => {
                </div>
                    <br />
                  <h5>Adventure cruising is more than a growing trend to connect with nature, wildlife, and yourself. It’s a community a adventurers that is here to stay. With luxurious accommodations and unmatched scenery, our Baja kayaking is the perfect escape.</h5>
-                <button onClick={navBookFlight}  className='baja-btn' >Book Flight </button>
+                <button onClick={navBookHotel}  className='baja-btn' >Book Hotel </button>
           </div> 
 
      </div> 
