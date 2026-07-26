@@ -10,6 +10,7 @@ import Hotels from './components/Hotels/Hotels.jsx'
 import BookHotel from './components/Hotels/SeeHotels/BookHotels/HotelPayloads.jsx'
 import AboutUs from './components/AboutUs/AboutUs.jsx'
 import Contact from './components/ContacUs/contactUs.jsx'
+import Discover from "./components/Discover/Discover.jsx"
 
 import {
   createBrowserRouter,
