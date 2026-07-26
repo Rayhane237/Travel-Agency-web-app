@@ -5,7 +5,7 @@ import Research from "./SeeHotels/research/Research"
 import Destinations from './SeeHotels/Destinations/Destinations'
 import Kayaking from './SeeHotels/Kay/Kayaking'
 import Footer from "../Footer/Footer"
-import Nav from '../Nav/Nav'
+import Nav from '../nav/nav'
 
 const Hotels = () => {
   return (

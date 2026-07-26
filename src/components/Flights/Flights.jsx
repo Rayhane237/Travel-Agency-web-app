@@ -3,7 +3,7 @@ import "./Flights.css"
 import HeaderFlights from './Flights.compos/HeaderFlights'
 import Destinations from './Flights.compos/Destination/Destinations'
 import Kayaking from './Flights.compos/Kayaking/Kayaking'
-import Nav from '../Nav/Nav'
+import Nav from '../nav/nav'
 import Footer from "../Footer/Footer"
 
 

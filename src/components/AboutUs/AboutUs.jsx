@@ -1,5 +1,5 @@
 import React from 'react'
-import Nav from '../Nav/Nav'
+import Nav from '../nav/nav'
 import HeaderAbout from './composAbout/HeaderAbout'
 import TopContent from './composAbout/TOPcontent/TopContent'
 

@@ -5,7 +5,7 @@ import HeaderDiscover from './CompoDiscover/HeaderDiscover'
 import SouthIsland from './CompoDiscover/South/SouthIsland'
 import NaturalFeatures from './CompoDiscover/natural/NaturalFeatures';
 import Footer from "../Footer/Footer"
-import Nav from '../Nav/Nav'
+import Nav from '../nav/nav'
 
 const Discover = () => {
 
