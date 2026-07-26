@@ -4,7 +4,8 @@ import { useNavigate, Link } from "react-router-dom";
 import api, { setAccessToken } from "../../API/axios";
 import { ToastContainer, toast } from "react-toastify";
 import homeImg from "../../assets/home.jpg";
-import Nav from "../Nav/Nav";
+import Nav from "../nav/nav"
+
 
 const EyeIcon = ({ hidden }) => (
   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.7">

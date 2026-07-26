@@ -3,7 +3,7 @@ import './Login.css';
 import { useNavigate, Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import homeImg from "../../assets/home.jpg";
-import Nav from '../Nav/Nav';
+import Nav from '../nav/nav';
 
 import api, { setAccessToken, trySessionRefresh } from "../../API/axios";
 
