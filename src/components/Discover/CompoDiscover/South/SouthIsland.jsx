@@ -9,14 +9,14 @@ const SouthIsland = () => {
   const backItem = {
     backgroundImage: `url(${Item})`,
     backgroundSize: 'cover',
-    backgroundPosition: 'right',
+    backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    height: ' 40vh',
-    marginLeft: "1.4rem",
-    padding: "0.5rem",
-    borderRadius: "13px",
+    width: '100%',
+    aspectRatio: '16 / 9',
+    padding: '0.5rem',
+    borderRadius: '13px',
     position: 'relative',
-    marginTop: "1.3rem"
+    marginTop: '1.3rem'
   };
 
   const backMap = {
@@ -24,11 +24,10 @@ const SouthIsland = () => {
     backgroundSize: 'cover',
     backgroundPosition: 'right',
     backgroundRepeat: 'no-repeat',
-    width: "26vw",
+    width: '100%',
     height: 'clamp(300px, 90vh, 500px)',
-    marginLeft: "1rem",
-    padding: "0.5",
-    borderRadius: "13px",
+    padding: '0.5rem',
+    borderRadius: '13px',
     position: 'relative',
   };
 

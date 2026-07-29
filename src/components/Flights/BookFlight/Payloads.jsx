@@ -91,13 +91,8 @@ const Payloads = () => {
       </div>
 
       <div className='booking-hero'>
-        <div className='text-home'>
-          <h3>Booking</h3>
-          <h1>Let's get you there</h1>
-          <p>Fill in your trip details below and we'll take care of the rest.</p>
-        </div>
-
-        <div className='book-flight'>
+       
+         <div className='book-flight'>
           <form className='flight-form' onSubmit={handleSubmit} noValidate>
             <header className='flight-header'>
               <h2>Plan your journey with ease and confidence!</h2>

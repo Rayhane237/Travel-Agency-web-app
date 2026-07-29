@@ -7,8 +7,7 @@ import Nav from '../nav/nav';
 
 import api, { setAccessToken, trySessionRefresh } from "../../API/axios";
 
-// Single source of truth for "where does a logged-in user land" —
-// change it here once instead of hunting two different navigate() calls.
+
 const LOGGED_IN_HOME = '/';
 
 const EyeIcon = ({ hidden }) => (

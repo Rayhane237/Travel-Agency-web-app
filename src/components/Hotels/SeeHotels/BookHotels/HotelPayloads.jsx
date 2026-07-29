@@ -109,9 +109,6 @@ const HotelPayloads = () => {
 
         <div className='book-flight'>
           <form className='flight-form' onSubmit={handleSubmit} noValidate>
-            <header className='flight-header'>
-              <h2>Plan your stay with ease and confidence!</h2>
-            </header>
 
             {fields.map(({ name, label, type, placeholder }) => (
               <div className='form-group' key={name}>

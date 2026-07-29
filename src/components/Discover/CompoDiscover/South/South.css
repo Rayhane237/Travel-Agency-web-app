@@ -1,78 +1,90 @@
-
 /*---compo2 :south island content --*/
-.body  {
-    padding:2rem;
+.body {
+    padding: 2rem;
 }
 
 .body h2 {
     color: rgb(35, 106, 118);
 }
-.south-text h5 {
+
+.south-text {
     text-align: justify;
     margin-top: 2rem;
+    color: rgb(9, 39, 39);
 }
+
 .destination-text h3 {
     color: rgb(34, 71, 75);
     position: relative;
-   
 }
-
-
-.backItem {
-    background-color: rgba(0, 255, 255, 0);
-    position: relative;
-    margin-left: 3%;
-}
-
 
 .flex-body {
- padding-top: -5rem;
-  display: grid;
-  grid-template-columns: 2.3fr 1fr;
-  align-items: start;
-  gap: 10px;
+    display: grid;
+    grid-template-columns: 2.3fr 1fr;
+    align-items: start;
+    gap: 10px;
 }
-   
-.flex h3,h5 {
+
+.flex h3,
+.flex h5 {
     color: rgb(9, 39, 39);
 }
 
 #body1 {
-    height: 55vh;
-} 
+    min-height: 55vh;
+}
 
 .map {
     background-color: rgba(255, 0, 242, 0);
     position: relative;
-    margin-left: 5%;
-    
 }
 
-@media(max-width:850px){
+.item {
+    background-color: rgba(0, 255, 255, 0);
+    position: relative;
+}
+
+/* Tablet: drop the side map, let the main content take full width */
+@media (max-width: 850px) {
+    .flex-body {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
     .map {
         display: none;
     }
-    .item {
-        width: 90%;
-    }
-    #body1 {
-        width: 110vw;
 
+    #body1 {
+        width: 100%;
+        min-height: auto;
     }
-   
+
+    .grid1 {
+        width: 100%;
+    }
 
     .destination-text {
         display: none;
     }
-    .body {
-        padding: 0.3rem;
-    }
 
+    .body {
+        padding: 1rem;
+    }
 }
 
-@media(max-width:550px){
-   
-    .item {
-       display: none;
+/* Mobile: keep the item image visible and responsive instead of hiding it */
+@media (max-width: 550px) {
+    .body {
+        padding: 0.75rem;
     }
-  }
+
+    .item {
+        aspect-ratio: 4 / 3;
+    }
+
+    .south-text {
+        margin-top: 1.2rem;
+    }
+}
