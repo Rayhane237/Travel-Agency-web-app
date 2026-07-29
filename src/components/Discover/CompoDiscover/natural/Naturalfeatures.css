@@ -1,8 +1,5 @@
-
-/*--------compo3 :Natural geographic features --*/
-
-.body-n{
-    margin-top: 0rem;
+.body-n {
+    margin-top: 0;
     padding: 2rem;
 }
 
@@ -10,40 +7,43 @@
     color: rgb(35, 106, 118);
 }
 
- .flex h5 {
-    margin-top: 10rem;
- }
-.flex-pics {
-    padding: 2rem;
-    background-color: rgba(250, 235, 215, 0.043);
+.nf-flex-body {
     display: flex;
-    margin-top: 2rem;
-    margin-left:8% ;
-    width: 90%;
+    align-items: flex-start;
+    gap: 3rem;
 }
 
-.grid2 {
-    margin-top: clamp(0.5rem,1.2rem,1rem);
-    display: flex;
-    flex-direction: column;
-    gap: clamp(2rem,2rem,1.5rem);
+.nf-grid1 {
+    flex: 2;
+    min-width: 0;
 }
 
-.flex-body-pics1 {
-    display: none;
+.nf-grid1 h5 {
+    text-align: justify;
+    color: rgb(9, 39, 39);
+    margin-top: 1.2rem;
 }
 
 .natural-pics {
     display: flex;
     gap: 1rem;
-    margin-left: 3%;
+    margin-top: 1rem;
 }
 
- .grid3 {
-    display: none;
-} 
+.feature-pic {
+    width: clamp(220px, 30vw, 520px);
+    height: clamp(170px, 30vw, 480px);
+    border-radius: 13px;
+}
 
-/* location pin badge */
+.nf-grid2 {
+    flex: 1;
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
 .location-tag {
     display: inline-flex;
     align-items: center;
@@ -59,7 +59,6 @@
     margin: 0.3rem 0;
 }
 
-/* "See all" header row */
 .other-destinations-header {
     display: flex;
     align-items: center;
@@ -67,32 +66,18 @@
     margin-bottom: 0.5rem;
 }
 
-.see-all-btn {
-    border: 1px solid rgb(21, 86, 98);
-    background: transparent;
-    color: rgb(21, 86, 98);
-    border-radius: 20px;
-    padding: 0.35rem 1rem;
-    font-size: 0.85rem;
-    cursor: pointer;
-    font-family: 'Poppins', 'Segoe UI', sans-serif;
-}
-
-.see-all-btn:hover {
-    background: rgb(21, 86, 98);
-    color: white;
-}
-
 .back {
+    width: 100%;
+    height: clamp(170px, 24vw, 190px);
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: clamp(1rem,1rem,3rem);
+    padding: 1rem;
     overflow: hidden;
+    border-radius: 13px;
 }
 
-/* dark gradient so white text stays readable over any photo */
 .back::before {
     content: "";
     position: absolute;
@@ -132,67 +117,42 @@
 }
 
 .back-btn:hover {
-   background-color: rgb(28, 110, 124);
-   color: white;
-} 
+    background-color: rgb(28, 110, 124);
+}
 
-
-@media(max-width:850px){
-    .flex-body {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
+/* Mobile: stack everything — text, then pic 1, then pic 2, then destinations */
+@media (max-width: 850px) {
+    .body-n {
         padding: 1rem;
     }
-    
-    
-    
-    .grid1 {
-        margin-left: 5%;
-        width: 90vw;
 
-    }
-    .natural-pics {
-      justify-content: center;
-      align-items: center;
-}
-
-    .grid2 {
-        display: none;
-        margin-top: 0;
-        height: 0;
-    }
-
-    
-.grid3 {
-  background-color: rgba(127, 255, 212, 0);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-  gap: 2rem;
-  padding-top: 0rem;
-  min-height: 40vh;
-  width: 100%;
-}
-
-} 
-
-@media(max-width:370px){
-    .back-btn {
-        margin-top: 0.3rem;
-    }
-
-    .body-n {
-        margin-top: 20vh;
-        padding: 0.6rem;
+    .nf-flex-body {
+        flex-direction: column;
+        gap: 2rem;
     }
 
     .natural-pics {
         flex-direction: column;
-        margin-left: -1.2rem;
-        
+    }
+
+    .feature-pic {
+        width: 100%;
+        height: 55vw;
+        max-height: 300px;
+    }
+
+    .nf-grid2 {
+        width: 100%;
     }
 }
 
+@media (max-width: 550px) {
+    .feature-pic {
+        height: 60vw;
+        max-height: 260px;
+    }
 
+    .back {
+        height: 180px;
+    }
+}

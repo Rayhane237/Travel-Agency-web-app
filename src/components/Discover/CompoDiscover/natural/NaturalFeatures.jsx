@@ -8,7 +8,6 @@ import snow from "../../../../assetsDiscover/islandof maui.jpg"
 
 import "./Naturalfeatures.css"
 
-// small inline pin icon, no icon library needed
 const PinIcon = ({ color = "rgb(220,70,70)" }) => (
   <svg viewBox="0 0 24 24" width="13" height="13" fill={color} style={{ flexShrink: 0 }}>
     <path d="M12 2C7.58 2 4 5.58 4 10c0 5.25 7 12 8 12s8-6.75 8-12c0-4.42-3.58-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z" />
@@ -27,67 +26,45 @@ const NaturalFeatures = () => {
   const backLake = {
     backgroundImage: `url(${destination})`,
     backgroundSize: 'cover',
-    backgroundPosition: 'right',
+    backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    width: 'clamp(220px, 30vw, 520px)',
-    height: 'clamp(170px, 30vw, 480px)',
-    marginLeft: "1rem",
-    padding: "0.5",
-    borderRadius: "13px",
+    borderRadius: '13px',
     position: 'relative',
   };
 
   const backGlacier = {
     backgroundImage: `url(${snow})`,
     backgroundSize: 'cover',
-    backgroundPosition: 'right',
+    backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    width: 'clamp(220px, 30vw, 520px)',
-    height: 'clamp(170px, 30vw, 480px)',
-    marginLeft: "1rem",
-    padding: "0.5",
-    borderRadius: "13px",
+    borderRadius: '13px',
     position: 'relative',
   };
 
-  // NOTE: no dedicated Turks & Caicos / Glacier NP photos exist yet in your
-  // assets — `lights` and `roses` are placeholders here. Swap when you have real photos.
   const backMaui = {
     backgroundImage: `url(${snow})`,
     backgroundSize: 'cover',
-    backgroundPosition: 'right',
+    backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    width: 'clamp(220px, 26vw, 400px)',
-    height: 'clamp(170px, 24vw, 190px)',
-    marginLeft: "1rem",
-    padding: "0.5",
-    borderRadius: "13px",
+    borderRadius: '13px',
     position: 'relative',
   };
 
   const backTurks = {
     backgroundImage: `url(${lights})`,
     backgroundSize: 'cover',
-    backgroundPosition: 'right',
+    backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    width: 'clamp(220px, 26vw, 400px)',
-    height: 'clamp(170px, 24vw, 190px)',
-    marginLeft: "1rem",
-    padding: "0.5",
-    borderRadius: "13px",
+    borderRadius: '13px',
     position: 'relative',
   };
 
   const backGlacierPark = {
     backgroundImage: `url(${roses})`,
     backgroundSize: 'cover',
-    backgroundPosition: 'right',
+    backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    width: 'clamp(220px, 26vw, 400px)',
-    height: 'clamp(170px, 24vw, 190px)',
-    marginLeft: "1rem",
-    padding: "0.5",
-    borderRadius: "13px",
+    borderRadius: '13px',
     position: 'relative',
   };
 
@@ -97,9 +74,9 @@ const NaturalFeatures = () => {
       <h2 id='south'>Natural Geographic Features</h2>
 
       <br />
-      <div className='flex-body' id='natural-body'>
+      <div className='nf-flex-body' id='natural-body'>
 
-        <div className='grid1'>
+        <div className='nf-grid1'>
 
           <LocationTag>New Zealand</LocationTag>
 
@@ -117,8 +94,8 @@ const NaturalFeatures = () => {
           <br />
 
           <div className='natural-pics'>
-            <div style={backLake}></div>
-            <div style={backGlacier}></div>
+            <div style={backLake} className='feature-pic'></div>
+            <div style={backGlacier} className='feature-pic'></div>
           </div>
           <br />
           <h5>Most of New Zealand's glaciers are in the South Island. They are
@@ -132,12 +109,11 @@ const NaturalFeatures = () => {
             in the east.</h5>
 
         </div>
-        
-        <div className='grid2' id='body2'>
+
+        <div className='nf-grid2' id='body2'>
           <br />
           <div className='other-destinations-header'>
             <h2 style={{ color: "rgba(20, 78, 87, 1)" }}> ___ Other destinations</h2>
-            
           </div>
 
           <div style={backMaui} className='back'>

@@ -34,39 +34,40 @@
     min-height: 55vh;
 }
 
-.map {
-    background-color: rgba(255, 0, 242, 0);
-    position: relative;
-}
-
 .item {
-    background-color: rgba(0, 255, 255, 0);
-    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-top: 1.3rem;
 }
 
-/* Tablet: drop the side map, let the main content take full width */
+.map {
+    width: 100%;
+    height: clamp(300px, 90vh, 500px);
+}
+
+/* Mobile: drop the text block + big photo entirely, keep only the map, full width */
 @media (max-width: 850px) {
     .flex-body {
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
-    }
-
-    .map {
-        display: none;
+        gap: 0;
     }
 
     #body1 {
-        width: 100%;
         min-height: auto;
     }
 
     .grid1 {
+        display: none;
+    }
+
+    .flex {
         width: 100%;
     }
 
-    .destination-text {
-        display: none;
+    .map {
+        width: 100%;
+        height: 50vh;
     }
 
     .body {
@@ -74,17 +75,12 @@
     }
 }
 
-/* Mobile: keep the item image visible and responsive instead of hiding it */
 @media (max-width: 550px) {
+    .map {
+        height: 42vh;
+    }
+
     .body {
         padding: 0.75rem;
-    }
-
-    .item {
-        aspect-ratio: 4 / 3;
-    }
-
-    .south-text {
-        margin-top: 1.2rem;
     }
 }

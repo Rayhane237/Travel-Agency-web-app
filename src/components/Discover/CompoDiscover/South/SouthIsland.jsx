@@ -11,33 +11,24 @@ const SouthIsland = () => {
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    width: '100%',
-    aspectRatio: '16 / 9',
-    padding: '0.5rem',
     borderRadius: '13px',
     position: 'relative',
-    marginTop: '1.3rem'
   };
 
   const backMap = {
     backgroundImage: `url(${Map})`,
     backgroundSize: 'cover',
-    backgroundPosition: 'right',
+    backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    width: '100%',
-    height: 'clamp(300px, 90vh, 500px)',
-    padding: '0.5rem',
     borderRadius: '13px',
     position: 'relative',
   };
 
   return (
     <div className='body'>
-
       <h2>South Island</h2>
       <br />
       <div className='grid-body-container'>
-
         <div className='flex-body' id='body1'>
           <div className='grid1'>
             <h5 className='south-text'>The South Island of New Zealand is renowned for
@@ -51,21 +42,14 @@ const SouthIsland = () => {
               adventure sports like bungee jumping and skiing.</h5>
             <br />
 
-            <div style={backItem} id='item' className='item'>
-            </div>
-
+            <div style={backItem} id='item' className='item'></div>
           </div>
 
           <div className='flex'>
-            <div style={backMap} className='map'>
-
-            </div>
+            <div style={backMap} className='map'></div>
           </div>
-
         </div>
-
       </div>
-
     </div>
   )
 }
