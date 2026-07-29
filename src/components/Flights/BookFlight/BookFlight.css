@@ -18,7 +18,7 @@
   min-height: 480px;
   background: linear-gradient(rgba(10, 30, 30, 0.55), rgba(10, 30, 30, 0.7)),
     linear-gradient(135deg, #143b3a, #1f5c58);
-  padding: 24px 24px 140px;
+  padding: 24px 24px 40px;
   font-family: "Inter", "Segoe UI", sans-serif;
   overflow: visible;
   display: flex;
@@ -140,14 +140,10 @@
   margin: 0;
 }
 
-/* ===== Floating booking card =====
-   Centered with margin: auto on the element itself, so it stays
-   centered regardless of whether an ancestor happens to apply
-   flexbox centering (e.g. .booking-hero) or not. */
 .book-flight {
   width: 100%;
   max-width: 640px;
-  margin: -100px auto 0;
+  margin: 40px auto 0;
   padding: 0 20px;
   position: relative;
   z-index: 10;
@@ -243,7 +239,7 @@
 /* ===== Responsive ===== */
 @media (max-width: 640px) {
   .booking-hero {
-    padding: 20px 16px 160px;
+    padding: 20px 16px 40px;
   }
 
   .text-home {
@@ -255,7 +251,7 @@
   }
 
   .book-flight {
-    margin-top: -120px;
+    margin-top: 32px;
   }
 
   .flight-form {
