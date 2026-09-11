@@ -48,25 +48,31 @@ const Footer = () => {
         {footerColumns.map((column, i) => (
           <div className='footer-item-s' key={i}>
             <h5>{column.title}</h5>
-            {column.items.map((item, j) =>
-              item.to ? (
-                <Link to={item.to} className='footer-link' key={j}>
-                  {item.label}
-                </Link>
-              ) : item.href ? (
-                
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className='footer-link'
-                  key={j}
-                >
-                  {item.label}
-                </a>
-              ) : (
+            {column.items.map((item, j) => {
+              if (item.to) {
+                return (
+                  <Link to={item.to} className='footer-link' key={j}>
+                    {item.label}
+                  </Link>
+                );
+              }
+              if (item.href) {
+                return (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className='footer-link'
+                    key={j}
+                  >
+                    {item.label}
+                  </a>
+                );
+              }
+              return (
                 <p className='footer-text' key={j}>{item.label}</p>
-              )
-            )}
+              );
+            })}
           </div>
         ))}
       </div>
