@@ -2,8 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import "./Footer.css"
 
-// Single source of truth for every column. Add/remove/reorder entries here —
-// no JSX or CSS ordering hacks needed, the layout just follows this array.
+
 const footerColumns = [
   {
     title: "Links",
@@ -13,6 +12,7 @@ const footerColumns = [
       { label: "Discover", to: "/Discover" },
       { label: "About Us", to: "/AboutUs" },
       { label: "Contact", to: "/Contact" },
+      { label: "AD.DBO", href: "https://admin-dash-board-travels.vercel.app" },
     ],
   },
   {
@@ -53,6 +53,16 @@ const Footer = () => {
                 <Link to={item.to} className='footer-link' key={j}>
                   {item.label}
                 </Link>
+              ) : item.href ? (
+                
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className='footer-link'
+                  key={j}
+                >
+                  {item.label}
+                </a>
               ) : (
                 <p className='footer-text' key={j}>{item.label}</p>
               )
@@ -64,4 +74,4 @@ const Footer = () => {
   )
 };
 
-export default Footer
+export default Footer;
