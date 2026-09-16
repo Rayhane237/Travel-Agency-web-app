@@ -1,32 +1,28 @@
 import React, { useState } from 'react';
 import "./BookFlight.css"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import api from "../../../API/axios"
 import { ToastContainer, toast } from "react-toastify";
 import Footer from "../../Footer/Footer"
 import Nav from "../../nav/nav"
 
-
+// Only fields the customer actually fills in themselves
 const fields = [
-  { name: "from", label: "From", type: "text", placeholder: "Departure city" },
-  { name: "to", label: "To", type: "text", placeholder: "Destination city" },
   { name: "date", label: "Date", type: "date", placeholder: "" },
   { name: "passenger", label: "Passenger", type: "text", placeholder: "Passenger name" },
 ];
 
 const Payloads = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const listingId = location.state?.listingId;
 
   const [formData, setFormData] = useState({
-    from: "",
-    to: "",
     date: "",
     passenger: ""
   });
 
   const [errData, setErrData] = useState({
-    from: "",
-    to: "",
     date: "",
     passenger: ""
   });
@@ -43,7 +39,12 @@ const Payloads = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const errors = { from: "", to: "", date: "", passenger: "" };
+    if (!listingId) {
+      toast.error("No flight selected. Please go back and pick a flight first.");
+      return;
+    }
+
+    const errors = { date: "", passenger: "" };
     let isValid = true;
 
     fields.forEach(({ name }) => {
@@ -63,9 +64,12 @@ const Payloads = () => {
     setSubmitting(true);
 
     try {
-      const res = await api.post("/bookFlight", { ...formData });
+      const res = await api.post("/bookFlight", {
+        ...formData,
+        listing: listingId,
+      });
 
-      if (res.status === 201 || res.status === 304) {
+      if (res.status === 201) {
         toast.success("Flight booked successfully!", {
           position: "top-right",
           autoClose: 3000,
@@ -98,6 +102,12 @@ const Payloads = () => {
         </div>
 
         <div className='book-flight'>
+          {!listingId && (
+            <p className="field-error">
+              No flight selected — please go back to Flights and pick one.
+            </p>
+          )}
+
           <form className='flight-form' onSubmit={handleSubmit} noValidate>
             <header className='flight-header'>
               <h2>Plan your journey with ease and confidence!</h2>
@@ -119,7 +129,7 @@ const Payloads = () => {
               </div>
             ))}
 
-            <button type='submit' id='confirm-btn' disabled={submitting}>
+            <button type='submit' id='confirm-btn' disabled={submitting || !listingId}>
               {submitting ? "Booking..." : "Confirm booking"}
             </button>
           </form>
