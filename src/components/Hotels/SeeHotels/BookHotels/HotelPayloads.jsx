@@ -71,16 +71,18 @@ const Payloads = () => {
         listing: listingId,
       });
 
-      if (res.status === 201) {
-        toast.success("Hotel booked successfully!", {
-          position: "top-right",
-          autoClose: 3000,
-          theme: "colored"
+       if (res.status === 201) {
+         const booking = res.data.data
+        toast.success( `Hotel booked: ${booking.listing.hotelName} — $${booking.listing.price}`,
+        {
+                position: "top-right",
+                autoClose: 3000,
+                theme: "colored"
         });
 
         setTimeout(() => {
           navigate("/Hotels");
-        }, 1000);
+        }, 2500);
       }
     } catch (error) {
       const msg = error.response?.data?.message || "Something went wrong";

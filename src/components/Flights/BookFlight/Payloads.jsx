@@ -70,7 +70,9 @@ const Payloads = () => {
       });
 
       if (res.status === 201) {
-        toast.success("Flight booked successfully!", {
+        const booking = res.data.data
+        toast.success( `Flight booked: ${booking.listing.destination} — $${booking.listing.price}`,
+        {
           position: "top-right",
           autoClose: 3000,
           theme: "colored"
@@ -78,7 +80,7 @@ const Payloads = () => {
 
         setTimeout(() => {
           navigate("/Flights");
-        }, 1000);
+        }, 2500);
       }
     } catch (error) {
       const msg = error.response?.data?.message || "Something went wrong";

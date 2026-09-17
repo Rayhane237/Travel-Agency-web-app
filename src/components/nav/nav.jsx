@@ -12,6 +12,8 @@ const links = [
   { label: "Discover", path: "/Discover" },
   { label: "About Us", path: "/AboutUs" },
   { label: "Contact", path: "/Contact" },
+  { label: "My Bookings", path: "/MyBookings" },
+  
 
 ]
 
@@ -71,12 +73,6 @@ const NavBar = () => {
     }
   }, [menuOpen])
 
-  // On mount, verify whether a session actually exists (cookie-based),
-  // independent of whatever's currently in the in-memory access token —
-  // covers page reloads, since the in-memory token resets on reload but
-  // the httpOnly refresh cookie doesn't. Uses trySessionRefresh() (not a
-  // raw api.post) so this can't race against Login.jsx's own check when
-  // both mount on the same page at the same time.
   useEffect(() => {
     if (getAccessToken()) return
 

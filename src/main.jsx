@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client'
 import Signup from './components/Signup/Signup.jsx'
 import Login from './components/Login/Login.jsx'
 import Plan from './components/Plan/Plan.jsx'
+import MyBookings from './components/Bookings/UserBookings.jsx'
 import Flights from './components/Flights/Flights.jsx'
 import BookFlight from "./components/Flights/BookFlight/Payloads.jsx"
 import Hotels from './components/Hotels/Hotels.jsx'
@@ -30,6 +31,11 @@ const router = createBrowserRouter([
     path: "/Login",
     element: <Login />,
   },
+   {
+    path: "/MyBookings",
+    element: <MyBookings />,
+  },
+ 
   {
     path: "/Flights",
     element: <Flights />,
