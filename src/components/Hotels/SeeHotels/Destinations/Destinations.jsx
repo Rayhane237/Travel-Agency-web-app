@@ -19,32 +19,44 @@ const Destinations = () => {
     navigate("/BookHotel", { state: { listingId } });
   }
 
-  if (loading) return null; // or a spinner, once you have one
+  if (loading) return null;
 
   return (
-    <div className='dh-section'>
-      <div className='dh-header'>
-        <div>
-          <p className='dh-eyebrow'>Hotels</p>
-          <h1 className='dh-title'>Discover your love</h1>
+    <div className="destinations-section">
+      <div className="destinations-header">
+        <div className="top-text">
+          <h3>Hotels</h3>
         </div>
-        <button className='dh-see-all'>See all</button>
+        <button className="see-all-btn">See all</button>
       </div>
 
-      <div className='dh-grid'>
+      <div className="destinations-grid">
         {destinations.map((item) => (
-          <div className='dh-card' key={item._id}>
-            <div
-              className='dh-image'
-              style={{ backgroundImage: `url(${item.image})` }}
-            >
-              <div className='dh-price'>$ {item.price}</div>
-              <div className='dh-overlay'>
-                <h3 className='dh-place'>{item.hotelName}</h3>
-                <p className='dh-tagline'>{item.description}</p>
+          <div
+            key={item._id}
+            className="destination-card"
+            style={{ backgroundImage: `url(${item.image})` }}
+          >
+            {!item.isActive && (
+              <div className="sold-out-badge">Sold Out</div>
+            )}
+            <div className="card-overlay">
+              <div className="card-info">
+                <div className="card-title-row">
+                  <h3>{item.hotelName}</h3>
+                  <h3 className="price">$ {item.price.toLocaleString()}</h3>
+                </div>
+                <p className="subtitle">{item.description}</p>
               </div>
+
+              <button
+                onClick={() => navBookHotel(item._id)}
+                className="f-btn"
+                disabled={!item.isActive}
+              >
+                {item.isActive ? "Book hotel" : "Sold Out"}
+              </button>
             </div>
-            <button onClick={() => navBookHotel(item._id)} className='dh-book-btn'>Book hotel</button>
           </div>
         ))}
       </div>

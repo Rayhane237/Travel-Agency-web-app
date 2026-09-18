@@ -19,7 +19,7 @@ const Destinations = () => {
     navigate("/BookFlight", { state: { listingId } });
   };
 
-  if (loading) return null; 
+  if (loading) return null;
 
   return (
     <div className="destinations-section">
@@ -37,6 +37,9 @@ const Destinations = () => {
             className="destination-card"
             style={{ backgroundImage: `url(${dest.image})` }}
           >
+            {!dest.isActive && (
+              <div className="sold-out-badge">Sold Out</div>
+            )}
             <div className="card-overlay">
               <div className="card-info">
                 <div className="card-title-row">
@@ -46,8 +49,12 @@ const Destinations = () => {
                 <p className="subtitle">{dest.description}</p>
               </div>
 
-              <button onClick={() => navBookFlight(dest._id)} className="f-btn">
-                Book flight
+              <button
+                onClick={() => navBookFlight(dest._id)}
+                className="f-btn"
+                disabled={!dest.isActive}
+              >
+                {dest.isActive ? "Book flight" : "Sold Out"}
               </button>
             </div>
           </div>
