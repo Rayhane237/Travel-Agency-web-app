@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getHotelListings } from '../../../../api/hotelListing'
+import { getHotelListings } from '../../../../API/hotelListing'
 
 import './DesHotel.css'
 
