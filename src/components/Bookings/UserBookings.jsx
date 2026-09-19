@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { getMyFlightBookings, getMyHotelBookings } from '../../api/myBookings';
+import { getMyFlightBookings, getMyHotelBookings } from '../../API/myBookings';
 import Nav from '../nav/nav';
 import Footer from '../Footer/Footer';
+
 import './Bookings.css';
 
 const MyBookings = () => {

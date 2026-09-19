@@ -3,7 +3,7 @@ import Nav from '../nav/nav'
 import HeaderAbout from './composAbout/HeaderAbout'
 import TopContent from './composAbout/TOPcontent/TopContent'
 
-import Team from './composAbout/team/Team'
+import Team from './composAbout/Team/Team'
 import BottomIcons from './composAbout/bottom/BottomIcons'
 import Footer from '../Footer/Footer'
 
