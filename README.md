@@ -1,4 +1,13 @@
 # Phnes Travels
+<img width="948" height="327" alt="image" src="https://github.com/user-attachments/assets/bfeac663-0cca-4eec-8b19-1338758926f1" />
+<img width="947" height="326" alt="image" src="https://github.com/user-attachments/assets/01c267b5-fd41-4760-8860-385e3955719f" />
+<img width="935" height="394" alt="image" src="https://github.com/user-attachments/assets/44454c48-0129-4fda-a6b8-de200fd15cd1" />
+<img width="947" height="373" alt="image" src="https://github.com/user-attachments/assets/2e1112ef-c78c-4bc8-a35c-efdc12257117" />
+<img width="947" height="322" alt="image" src="https://github.com/user-attachments/assets/f5bc8ce5-f750-4025-b79c-78602edfdf20" />
+<img width="936" height="347" alt="image" src="https://github.com/user-attachments/assets/3908ce17-dbd5-4063-8705-ce8c549acd82" />
+
+<img width="959" height="320" alt="image" src="https://github.com/user-attachments/assets/37fcaf1b-b52b-43b1-b039-9b04a6e2423a" />
+
 
 A full-stack travel booking platform where customers browse and book flights and hotel stays, and administrators manage inventory, bookings, and customer accounts through a dedicated dashboard.
 
